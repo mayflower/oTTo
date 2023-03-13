@@ -1,2 +1,2 @@
 # oTTo
-Open Time Table organizer
+open Time Table organizer
