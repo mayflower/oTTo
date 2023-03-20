@@ -1,0 +1,6 @@
+services:
+  backend:
+    image: otto/backend:dev
+    container_name: backend
+    ports:
+      - 8000:8080
