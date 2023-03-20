@@ -1,0 +1,112 @@
+---
+openapi: 3.0.3
+info:
+  title: "otto-api"
+  description: "otto rest api"
+  version: 0.0.1
+
+components:
+  schemas:
+    empty:
+      title: "Empty"
+      description: "empty entity model"
+      type: object
+      readOnly: true
+    error:
+      title: "Error"
+      description: "error entity model"
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          title: "Message"
+          description: "error message/reason"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "error happened due to xyz"
+        code:
+          title: "Code"
+          description: "error code, can be used for error handling"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "ERR01"
+        resolution:
+          title: "Resolution"
+          description: "possible resolution"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "this could be done in order to resolve the error"
+    room:
+      title: "Room"
+      description: "room entity model"
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "abcdefg"
+        name:
+          title: "Name"
+          description: "name of the room"
+          type: string
+          nullable: false
+          example: "Nice Room"
+    session:
+      title: "Session"
+      description: "session entity model"
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "abcdefg"
+        name:
+          title: "Name"
+          description: "name of the session"
+          type: string
+          nullable: false
+          example: "Kubernetes for Beginner#1"
+        desc-short:
+          title: "Short Description"
+          description: "brief session-description"
+          type: string
+          maxLength: 256
+          example: "This is a Kubernetes Session for Beginners. Only for Entry Levels."
+        desc-long:
+          title: "Long Description"
+          description: "extended session-description - this could be an abstract"
+          type: string
+          maxLength: 1024
+          example: "..."
+        start:
+          title: "Start"
+          description: "start timestamp of the session"
+          type: integer
+          nullable: false
+          example: 1679107234
+        end:
+          title: "End"
+          description: "end timestamp of the session"
+          type: integer
+          nullable: false
+          example: 1679108234
+
+paths:
+  /:
