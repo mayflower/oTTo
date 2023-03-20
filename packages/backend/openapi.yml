@@ -109,4 +109,8 @@ components:
           example: 1679108234
 
 paths:
-  /:
+  /list:
+    get:
+      responses:
+        '200':
+          description: Successful response
