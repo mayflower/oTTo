@@ -9,12 +9,12 @@ components:
   schemas:
     empty:
       title: "Empty"
-      description: "empty entity model"
+      description: "empty data transfer object"
       type: object
       readOnly: true
     error:
       title: "Error"
-      description: "error entity model"
+      description: "error data transfer object"
       type: object
       required:
         - message
@@ -43,7 +43,7 @@ components:
           example: "this could be done in order to resolve the error"
     room:
       title: "Room"
-      description: "room entity model"
+      description: "room data transfer object"
       type: object
       required:
         - id
@@ -64,7 +64,7 @@ components:
           example: "Nice Room"
     session:
       title: "Session"
-      description: "session entity model"
+      description: "session data transfer object"
       type: object
       required:
         - id
