@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.mayflower</groupId>
+    <artifactId>stubs</artifactId>
+    <version>0.0.1</version>
+
+    <name>stubs</name>
+    <description>API Specification for oTTo</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <kotlin.version>1.7.22</kotlin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/../api-spec/openapi.yml</inputSpec>
+                            <generatorName>kotlin-spring</generatorName>
+                            <apiPackage>de.mayflower.api</apiPackage>
+                            <modelPackage>de.mayflower.model</modelPackage>
+                            <artifactId>stubs</artifactId>
+                            <artifactVersion>${project.version}</artifactVersion>
+                            <packageName>de.mayflower</packageName>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                            <configOptions>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <delegatePattern>true</delegatePattern>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

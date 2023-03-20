@@ -12,7 +12,7 @@
 
     <groupId>de.mayflower</groupId>
     <artifactId>backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>backend</name>
     <description>Backend for oTTo</description>
@@ -36,6 +36,11 @@
     </profiles>
 
     <dependencies>
+        <dependency>
+            <groupId>de.mayflower</groupId>
+            <artifactId>stubs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -81,10 +86,6 @@
                         <image>${docker.image-name}:${docker.image-tag}</image>
                     </to>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>

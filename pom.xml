@@ -6,13 +6,14 @@
     <groupId>de.mayflower</groupId>
     <artifactId>otto</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>otto-reactor</name>
     <description>open TimeTable organizer</description>
 
     <modules>
         <module>packages/backend</module>
+        <module>packages/stubs</module>
     </modules>
 
 </project>

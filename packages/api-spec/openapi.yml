@@ -69,6 +69,8 @@ components:
       required:
         - id
         - name
+        - start
+        - end
       properties:
         id:
           title: "ID"
@@ -83,16 +85,18 @@ components:
           type: string
           nullable: false
           example: "Kubernetes for Beginner#1"
-        desc-short:
-          title: "Short Description"
+        description:
+          title: "Description"
           description: "brief session-description"
           type: string
           maxLength: 256
           example: "This is a Kubernetes Session for Beginners. Only for Entry Levels."
-        desc-long:
-          title: "Long Description"
-          description: "extended session-description - this could be an abstract"
+        abstract:
+          title: "Abstract"
+          description: "abstract for this session"
           type: string
+          nullable: false
+          minLength: 256
           maxLength: 1024
           example: "..."
         start:
