@@ -29,7 +29,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <docker.image-tag>dev</docker.image-tag>
+                <docker.image-tag>local</docker.image-tag>
             </properties>
         </profile>
     </profiles>

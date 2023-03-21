@@ -8,15 +8,10 @@
     <packaging>pom</packaging>
     <version>0.0.1</version>
 
-    <name>otto-reactor</name>
+    <name>otto</name>
     <description>open TimeTable organizer</description>
 
     <modules>
         <module>packages/backend</module>
     </modules>
-
-    <properties>
-        <spring-boot.version>3.0.4</spring-boot.version>
-        <kotlin.version>1.7.22</kotlin.version>
-    </properties>
 </project>
