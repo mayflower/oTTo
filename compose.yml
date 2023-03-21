@@ -1,6 +1,28 @@
 services:
+  # services
   backend:
     image: otto/backend:dev
     container_name: backend
     ports:
       - 8000:8080
+
+  # database
+  db:
+    image: postgres:15.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_DEFAULT_DATABASE
+    ports:
+      - 5432:5432
+    volumes:
+      - db-volume
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db-volume:
