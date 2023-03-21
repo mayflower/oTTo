@@ -13,7 +13,10 @@
 
     <modules>
         <module>packages/backend</module>
-        <module>packages/stubs</module>
     </modules>
 
+    <properties>
+        <spring-boot.version>3.0.4</spring-boot.version>
+        <kotlin.version>1.7.22</kotlin.version>
+    </properties>
 </project>
