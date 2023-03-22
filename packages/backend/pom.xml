@@ -199,6 +199,11 @@
                         <to>
                             <image>${docker.image-name}:${docker.image-tag}</image>
                         </to>
+                        <container>
+                            <jvmFlags>
+                                <jvmFlag>-Dspring.profiles.active=docker</jvmFlag>
+                            </jvmFlags>
+                        </container>
                     </configuration>
                 </plugin>
 
