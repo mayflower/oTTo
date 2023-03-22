@@ -1,0 +1,302 @@
+---
+openapi: 3.0.3
+info:
+  title: "otto-api"
+  description: "otto rest api"
+  version: 0.0.1
+
+components:
+  schemas:
+    empty:
+      title: "Empty"
+      description: "empty data transfer object"
+      type: object
+      readOnly: true
+    error:
+      title: "Error"
+      description: "error data transfer object"
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          title: "Message"
+          description: "error message/reason"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "error happened due to xyz"
+        code:
+          title: "Code"
+          description: "error code, can be used for error handling"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "ERR01"
+        resolution:
+          title: "Resolution"
+          description: "possible resolution"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "this could be done in order to resolve the error"
+    room:
+      title: "Room"
+      description: "room data transfer object"
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "abcdefg"
+        name:
+          title: "Name"
+          description: "name of the room"
+          type: string
+          nullable: false
+          example: "Nice Room"
+        sessions:
+          title: "Sessions"
+          description: "list of sessions within room"
+          type: array
+          items:
+            $ref: '#/components/schemas/session'
+          nullable: false
+    session:
+      title: "Session"
+      description: "session data transfer object"
+      type: object
+      required:
+        - id
+        - name
+        - start
+        - end
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: string
+          readOnly: true
+          nullable: false
+          example: "abcdefg"
+        name:
+          title: "Name"
+          description: "name of the session"
+          type: string
+          nullable: false
+          example: "Kubernetes for Beginner#1"
+        description:
+          title: "Description"
+          description: "brief session-description"
+          type: string
+          maxLength: 256
+          example: "This is a Kubernetes Session for Beginners. Only for Entry Levels."
+        abstract:
+          title: "Abstract"
+          description: "abstract for this session"
+          type: string
+          nullable: false
+          minLength: 256
+          maxLength: 1024
+          example: "..."
+        start:
+          title: "Start"
+          description: "start timestamp of the session"
+          type: integer
+          nullable: false
+          example: 1679107234
+        end:
+          title: "End"
+          description: "end timestamp of the session"
+          type: integer
+          nullable: false
+          example: 1679108234
+
+paths:
+  /rooms:
+    get:
+      operationId: getRooms
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: List of rooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/room'
+    post:
+      operationId: createRoom
+      requestBody:
+        description: room to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/room'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully created response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+
+  /rooms/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getRoomById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+    put:
+      operationId: changeRoomById
+      requestBody:
+        description: room to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/room'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully updated
+    delete:
+      operationId: deleteRoomById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '204':
+          description: Successfully deleted
+
+  /sessions:
+    get:
+      operationId: getSessions
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: list of sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/session'
+    post:
+      operationId: createSession
+      requestBody:
+        description: session to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/session'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully created response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/session'
+  /sessions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getSessionById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/session'
+    put:
+      operationId: updateSessionById
+      requestBody:
+        description: session to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/session'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully updated
+    delete:
+      operationId: deleteSessionById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '204':
+          description: Successfully deleted

@@ -1,6 +1,6 @@
 services:
   backend:
-    image: otto/backend:dev
+    image: otto/backend:local
     container_name: backend
     ports:
       - 8000:8080
