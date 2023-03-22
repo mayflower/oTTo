@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: patrick.shaikh
+      changes:
+        - createTable:
+            tableName: room
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: char(128)
+        - createTable:
+            tableName: session
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: room_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: char(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: char(256)
+              - column:
+                  name: abstract
+                  type: char(1024)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: fk_session_room
+            onDelete: SET NULL
+            onUpdate: CASCADE
+            baseTableCatalogName: backend
+            baseTableSchemaName: public
+            baseTableName: session
+            baseColumnNames: room_id
+            referencedTableCatalogName: backend
+            referencedTableSchemaName: public
+            referencedTableName: room
+            referencedColumnNames: id
