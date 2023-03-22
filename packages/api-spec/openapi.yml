@@ -62,6 +62,13 @@ components:
           type: string
           nullable: false
           example: "Nice Room"
+        sessions:
+          title: "Sessions"
+          description: "list of sessions within room"
+          type: array
+          items:
+            $ref: '#/components/schemas/session'
+          nullable: false
     session:
       title: "Session"
       description: "session data transfer object"
@@ -113,8 +120,183 @@ components:
           example: 1679108234
 
 paths:
-  /list:
+  /rooms:
     get:
+      operationId: getRooms
       responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: List of rooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/room'
+    post:
+      operationId: createRoom
+      requestBody:
+        description: room to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/room'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully created response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+
+  /rooms/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getRoomById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '200':
           description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+    put:
+      operationId: changeRoomById
+      requestBody:
+        description: room to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/room'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully updated
+    delete:
+      operationId: deleteRoomById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '204':
+          description: Successfully deleted
+
+  /sessions:
+    get:
+      operationId: getSessions
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: list of sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/session'
+    post:
+      operationId: createSession
+      requestBody:
+        description: session to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/session'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully created response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/session'
+  /sessions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getSessionById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/session'
+    put:
+      operationId: updateSessionById
+      requestBody:
+        description: session to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/session'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully updated
+    delete:
+      operationId: deleteSessionById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '204':
+          description: Successfully deleted
