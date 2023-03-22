@@ -5,17 +5,19 @@ services:
     container_name: backend
     ports:
       - 8000:8080
+    environment:
+      - SPRING_DATASOURCE_URL=$BACKEND_DB_JDBC_URL
+      - SPRING_DATASOURCE_USERNAME=$DB_USERNAME
+      - SPRING_DATASOURCE_URL=$DB_PASSWORD
+      - SPRING_JPA_SHOW_SQL=$BACKEND_JPA_LOG_STATEMENTS
 
   # database
   db:
     image: postgres:15.2-alpine
-    restart: always
     environment:
-      - POSTGRES_USER=$DB_USER
+      - POSTGRES_USER=$DB_USERNAME
       - POSTGRES_PASSWORD=$DB_PASSWORD
       - POSTGRES_DB=$DB_DEFAULT_DATABASE
-    ports:
-      - 5432:5432
     volumes:
       - db-volume
   adminer:
