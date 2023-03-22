@@ -137,7 +137,7 @@
                                     <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
                                 </configOptions>
                                 <supportingFilesToGenerate>
-                                    ApiUtil.java
+                                    ApiUtil.kt
                                 </supportingFilesToGenerate>
                             </configuration>
                         </execution>
