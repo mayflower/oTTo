@@ -29,8 +29,6 @@ databaseChangeLog:
               - column:
                   name: room_id
                   type: int
-                  constraints:
-                    nullable: false
               - column:
                   name: name
                   type: char(128)
