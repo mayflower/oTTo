@@ -1,4 +1,4 @@
 databaseChangeLog:
 - includeAll:
-    path: changesets/
+    path: changesets/*.yml
 

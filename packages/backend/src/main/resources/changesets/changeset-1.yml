@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 0
-      author: patrick.shaikh
+      id: 1
+      author: kaidobit
       changes:
         - createTable:
             tableName: room
@@ -43,12 +43,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: start
+                  name: start_timestamp
                   type: int
                   constraints:
                     nullable: false
               - column:
-                  name: end
+                  name: end_timestamp
                   type: int
                   constraints:
                     nullable: false
@@ -64,3 +64,11 @@ databaseChangeLog:
             referencedTableSchemaName: public
             referencedTableName: room
             referencedColumnNames: id
+  - changeSet:
+      id: 1.1
+      author: kaidobit
+      contextFilter: fixtures
+      changes:
+      - sqlFile:
+          path: ./fixtures-1.1.sql
+          relativeToChangelogFile: true

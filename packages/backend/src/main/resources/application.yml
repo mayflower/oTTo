@@ -27,5 +27,6 @@ spring:
     username: liquibase
     password: liquibase
   jpa.show-sql: true
+  liquibase.contexts: dev
 ---
 spring.config.activate.on-profile: docker
