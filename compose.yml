@@ -3,6 +3,9 @@ services:
   backend:
     image: otto/backend:local
     container_name: backend
+    build:
+      context: ./
+      dockerfile: ./packages/backend/Dockerfile
     ports:
       - 8000:8080
     environment:
