@@ -1,14 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import TimeTableView from '@/views/TimeTableView.vue'
+import NewSessionView from '@/views/NewSessionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
-    }
+      name: 'timeTable',
+      component: TimeTableView
+    },
+    {
+      path: '/addSession',
+      name: 'newSession',
+      component: NewSessionView
+    },
   ]
 })
 

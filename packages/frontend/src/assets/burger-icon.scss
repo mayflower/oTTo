@@ -1,0 +1,63 @@
+$height-icon: 17px;
+$width-line: 22px;
+$height-line: 2px;
+
+$transition-time: 0.3s;
+$rotation: -45deg;
+$translateY: (calc($height-icon / 2));
+$translateX: 0;
+
+#hamburger-icon {
+  width: $width-line;
+  height: $height-icon;
+  position: relative;
+  display: block;
+
+  .line {
+    display: block;
+    background: #ecf0f1;
+    height: $height-line;
+    position: absolute;
+    right: 0;
+    border-radius: (calc($height-icon / 2));
+    transition: all $transition-time;
+
+    &.line-1 {
+      top: 0;
+      width: calc($width-line / 2);
+    }
+    &.line-2 {
+      top: 50%;
+      width: $width-line;
+    }
+    &.line-3 {
+      top: 100%;
+      width: calc($width-line / 1.5);
+    }
+  }
+  &:hover,
+  &:focus {
+    .line-1 {
+      width: calc($width-line / 1.5);
+    }
+    .line-2 {
+      width: calc($width-line / 2);
+    }
+    .line-3 {
+      width: calc($width-line);
+    }
+  }
+  &.active {
+    .line-1 {
+      width: $width-line;
+      transform: translateY($translateY) translateX($translateX) rotate($rotation);
+    }
+    .line-2 {
+      opacity: 0;
+    }
+    .line-3 {
+      width: $width-line;
+      transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+    }
+  }
+}
