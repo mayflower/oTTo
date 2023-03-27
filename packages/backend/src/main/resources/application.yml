@@ -2,7 +2,7 @@
 # default profile
 spring:
   profiles:
-    default: dev
+    default: local
   # database-connection
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -12,21 +12,21 @@ spring:
       ddl-auto: none
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.format_sql: true
   # liquibase
   liquibase:
     enabled: true
     change-log: 'classpath:db-changelog.yml'
     drop-first: false
 ---
-spring.config.activate.on-profile: dev
+spring.config.activate.on-profile: local
 
 spring:
   # database-connection
   datasource:
     url: jdbc:postgresql://localhost:5432/backend
-    username: liquibase
-    password: liquibase
-  jpa.show-sql: true
-  liquibase.contexts: dev
+    username: backend
+    password: backend
+  liquibase.contexts: fixtures
 ---
 spring.config.activate.on-profile: docker
