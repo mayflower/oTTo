@@ -9,7 +9,6 @@ databaseChangeLog:
               - column:
                   name: id
                   type: char(128)
-                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -22,13 +21,12 @@ databaseChangeLog:
               - column:
                   name: id
                   type: char(128)
-                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: room_id
-                  type: int
+                  type: char(128)
               - column:
                   name: name
                   type: char(128)

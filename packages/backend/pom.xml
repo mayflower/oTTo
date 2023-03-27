@@ -25,6 +25,7 @@
         <swagger-annotations.version>2.2.8</swagger-annotations.version>
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
         <liquibase.version>4.20.0</liquibase.version>
+        <ulidj.version>1.0.0</ulidj.version>
 
         <!-- plugin version -->
         <plugins.openapi-generator.version>6.4.0</plugins.openapi-generator.version>
@@ -49,6 +50,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- ulid -->
+            <dependency>
+                <groupId>io.azam.ulidj</groupId>
+                <artifactId>ulidj</artifactId>
+                <version>${ulidj.version}</version>
+            </dependency>
+
             <!-- api -->
             <dependency>
                 <groupId>javax.validation</groupId>
@@ -69,6 +77,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- ulid -->
+        <dependency>
+            <groupId>io.azam.ulidj</groupId>
+            <artifactId>ulidj</artifactId>
+        </dependency>
+
         <!-- api -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
