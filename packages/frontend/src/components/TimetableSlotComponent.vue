@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center">
+  <div class="flex flex-col justify-center overflow-hidden">
     <div>
       <span class="text-sm font-bold line-clamp-2">{{ title }}</span>
       <div class="flex flex-col text-xs mt-1">
