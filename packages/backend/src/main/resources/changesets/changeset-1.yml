@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: char(128)
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -21,7 +21,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: char(128)
                   autoIncrement: true
                   constraints:
                     primaryKey: true
