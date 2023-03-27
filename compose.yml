@@ -24,6 +24,8 @@ services:
       - POSTGRES_DB=$DB_DEFAULT_DATABASE
     volumes:
       - db-volume
+    ports:
+      - 5432:5432
   adminer:
     image: adminer:4.8.1
     restart: always
