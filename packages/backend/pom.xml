@@ -217,10 +217,22 @@
                             <arg>-Xjsr305=strict</arg>
                         </args>
                         <compilerPlugins>
+                            <plugin>jpa</plugin>
                             <plugin>spring</plugin>
+                            <plugin>all-open</plugin>
                         </compilerPlugins>
+                        <pluginOptions>
+                            <option>all-open:annotation=jakarta.persistence.Entity</option>
+                            <option>all-open:annotation=jakarta.persistence.Embeddable</option>
+                            <option>all-open:annotation=jakarta.persistence.MappedSuperclass</option>
+                        </pluginOptions>
                     </configuration>
                     <dependencies>
+                        <dependency>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlin-maven-noarg</artifactId>
+                            <version>${kotlin.version}</version>
+                        </dependency>
                         <dependency>
                             <groupId>org.jetbrains.kotlin</groupId>
                             <artifactId>kotlin-maven-allopen</artifactId>
