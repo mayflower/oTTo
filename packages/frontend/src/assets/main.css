@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-    @apply bg-slate-800 text-white
+  @apply bg-neutral-800 text-white;
+}
+
+.simplebar-scrollbar {
+  @apply bg-gradient-to-b from-neutral-400  to-neutral-600
 }

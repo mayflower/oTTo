@@ -42,6 +42,114 @@ export function getRooms() {
         }
       ]
     }
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Große Halle',
+    //   color: '#0284c7',
+    //   sessions: [
+    //     {
+    //       name: 'Vue.js 3 für Profis',
+    //       host: 'Mare Walzl',
+    //       start: 1,
+    //       duration: 3
+    //     },
+    //     {
+    //       name: 'React.js ist schlechter als Vue',
+    //       host: 'Mark Zuckerberg',
+    //       start: 4,
+    //       duration: 6
+    //     }
+    //   ]
+    // }
   ]
 
   return rooms

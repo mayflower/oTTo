@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -20,6 +20,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "date-fns": "^2.29.3",
     "pinia": "^2.0.32",
+    "simplebar": "^2.4.3",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
