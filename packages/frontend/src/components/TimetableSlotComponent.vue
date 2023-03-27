@@ -1,11 +1,21 @@
 <template>
-  <div>
-    <span>{{ title }}</span>
+  <div class="flex flex-col justify-center">
     <div>
-      <span><fa-icon icon="hat-wizard" />{{ host }}</span>
-      <span>{{ host }}</span>
-      <span>{{ host }}</span>
-      <span>{{ host }}</span>
+      <span class="text-sm font-bold line-clamp-2">{{ title }}</span>
+      <div class="flex flex-col text-xs mt-1">
+        <span>
+          <fa-icon icon="user" class="text-black opacity-40 w-5" />
+          {{ host }}
+        </span>
+        <span>
+          <fa-icon icon="clock" class="text-black opacity-40 w-5" />
+          {{ start }} {{ end }}
+        </span>
+        <span>
+          <fa-icon icon="location-dot" class="text-black opacity-40 w-5" />
+          {{ room }}
+        </span>
+      </div>
     </div>
   </div>
 </template>

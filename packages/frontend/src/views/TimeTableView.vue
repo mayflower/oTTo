@@ -34,7 +34,12 @@
               :style="`height: ${session.duration * 3 - 0.2}rem; top: ${session.start * 3}rem`"
               v-for="session in sessions"
               :key="session.name"
-            >
+              title="hallo das ist eine zweizeilige lange headline und noch länger skdfh sd"
+              host="bskjh dkfjgh"
+              room="bskjh dkfjgh"
+              start="10.00"
+              end="11.00"
+              >
             </TimetableSlotComponent>
           </div>
         </div>
@@ -68,7 +73,7 @@ const sessions = [
   {
     name: 'coole session',
     start: 0,
-    duration: 4
+    duration: 2
   },
   {
     name: 'coole session',
@@ -89,7 +94,6 @@ const interval = setInterval(() => {
 const timelineToNowDiff = computed(() => {
   const diff = differenceInMinutes(now.value, timelineStart)
   const remDistance = (3 / 15) * diff
-  console.log(diff)
   return remDistance
 })
 
