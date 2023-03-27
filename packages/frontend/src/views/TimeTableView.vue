@@ -15,10 +15,7 @@
         >
           {{ time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) }}
         </div>
-        <div
-          class="absolute h-0.5 bg-slate-100 w-full"
-          :style="`top: ${timelineToNowDiff}rem`"
-        >
+        <div class="absolute h-0.5 bg-slate-100 w-full" :style="`top: ${timelineToNowDiff}rem`">
           <div class="h-3.5 aspect-square rounded-full bg-slate-100 -mt-1.5 -ml-2"></div>
         </div>
       </div>
@@ -32,14 +29,13 @@
       <div class="absolute flex w-full pr-14 top-0">
         <div class="flex-1 px-2" v-for="item in [0, 1, 2]" :key="item">
           <div class="relative">
-            <div
+            <TimetableSlotComponent
               class="w-full bg-red-500 p-2 rounded-md absolute"
               :style="`height: ${session.duration * 3 - 0.2}rem; top: ${session.start * 3}rem`"
               v-for="session in sessions"
               :key="session.name"
             >
-              timeslot
-            </div>
+            </TimetableSlotComponent>
           </div>
         </div>
       </div>
@@ -49,7 +45,8 @@
 
 <script setup lang="ts">
 import { eachMinuteOfInterval, differenceInMinutes } from 'date-fns'
-import { computed, onUnmounted, ref } from 'vue';
+import { computed, onUnmounted, ref } from 'vue'
+import TimetableSlotComponent from '@/components/TimetableSlotComponent.vue'
 
 const timelineStart = new Date(2023, 2, 27, 11)
 const timelineEnd = new Date(2023, 2, 27, 16)
@@ -82,22 +79,21 @@ const sessions = [
 
 const now = ref(new Date())
 
-const interval = setInterval(()=>{
-    const newDate = new Date()
-    if (newDate.getSeconds() === 0) {
-        now.value = newDate
-    }
+const interval = setInterval(() => {
+  const newDate = new Date()
+  if (newDate.getSeconds() === 0) {
+    now.value = newDate
+  }
 }, 1000)
 
 const timelineToNowDiff = computed(() => {
-    const diff = differenceInMinutes(now.value, timelineStart)
-    const remDistance = 3 / 15 * diff
-    console.log(diff)
-    return remDistance
+  const diff = differenceInMinutes(now.value, timelineStart)
+  const remDistance = (3 / 15) * diff
+  console.log(diff)
+  return remDistance
 })
 
-onUnmounted(()=> {
-    clearInterval(interval)
+onUnmounted(() => {
+  clearInterval(interval)
 })
-
 </script>
