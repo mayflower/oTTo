@@ -3,10 +3,14 @@
     <div
       v-for="time in times"
       :key="time.toString()"
-      class="border-t border-neutral-600 flex justify-end items-center h-12 bg-neutral-900 p-3 text-sm text-neutral-300"
-      :class="{ 'border-t-2': time.getMinutes() === 0 }"
+      class="border-neutral-600 flex justify-end items-center h-12 bg-neutral-800 p-3 text-sm text-neutral-300"
+      :class="[time.getMinutes() === 0 ? 'border-t-2' : 'border-t text-xs text-neutral-500']"
     >
-      {{ time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) }}
+      {{
+        time.getMinutes() === 0
+          ? time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })
+          : ':' + time.toLocaleTimeString('de-DE', { minute: '2-digit' })
+      }}
     </div>
     <div class="z-10 absolute h-0.5 bg-neutral-100 w-full" :style="`top: ${timelineToNowDiff}rem`">
       <div class="h-3.5 aspect-square rounded-full bg-neutral-100 -mt-1.5 -ml-2"></div>

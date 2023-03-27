@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-800 text-white;
+  @apply bg-neutral-700 text-white;
 }
 
 .simplebar-scrollbar {

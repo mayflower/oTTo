@@ -9,7 +9,7 @@
         </span>
         <span>
           <fa-icon icon="clock" class="text-black opacity-40 w-5" />
-          {{ start }} {{ end }}
+          {{ start }} - {{ end }}
         </span>
         <span>
           <fa-icon icon="location-dot" class="text-black opacity-40 w-5" />
