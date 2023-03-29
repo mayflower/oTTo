@@ -49,8 +49,8 @@
         </button>
       </div>
     </div>
-    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }">
-      <div class="relative" v-resize="onTimelineResize">
+    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }" class="-ml-3">
+      <div class="relative ml-3" v-resize="onTimelineResize">
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute w-full flex pr-14 top-0">
@@ -126,6 +126,12 @@ const roomDisplayedRange = computed(() => {
 function onTimelineResize(sizes: { width: number }) {
   const minRoomWidth = 275
   const roomsDisplayedNew = Math.floor(sizes.width / minRoomWidth) || 1
+
+  if (!canGoRight.value) {
+    const lastPossible =
+      selectedRoom.value + roomsDisplayedNew - (selectedRoom.value + roomsDisplayed.value)
+    selectedRoom.value = selectedRoom.value - lastPossible
+  }
 
   roomsDisplayed.value = roomsDisplayedNew
 }
