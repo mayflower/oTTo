@@ -6,22 +6,37 @@
       <div>Mittwoch</div>
     </div>
     <div class="flex w-full pr-14">
-      <div class="flex-1 p-2">
-        <div>
-          <RoomDropdownComponent
-            :rooms="rooms"
-            :selected-room-index="selectedRoom"
-            @on-room-click="(data) => changeRoom(data)"
-          >
-            <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
+      <div class="flex-1 p-2 flex">
+        <button
+          @click="paginateRooms(-1)"
+          class="px-2 py-1 h-1"
+          :class="{ 'opacity-60': selectedRoom === 0 }"
+          :disabled="selectedRoom === 0"
+        >
+          <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
+        </button>
+        <RoomDropdownComponent
+          :rooms="rooms"
+          :selected-room-index="selectedRoom"
+          @on-room-click="(data) => changeRoom(data)"
+          class="flex-1"
+        >
+          <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
 
-            <fa-icon
-              icon="fa fa-chevron-down"
-              class="h-4 w-4 text-white absolute right-3 bottom-1/2 top-1/2 -translate-y-1/2"
-              aria-hidden="true"
-            />
-          </RoomDropdownComponent>
-        </div>
+          <fa-icon
+            icon="fa fa-chevron-down"
+            class="h-4 w-4 text-white absolute right-3 bottom-1/2 top-1/2 -translate-y-1/2"
+            aria-hidden="true"
+          />
+        </RoomDropdownComponent>
+        <button
+          @click="paginateRooms(1)"
+          class="px-2 py-1 h-1"
+          :class="{ 'opacity-60': selectedRoom === rooms.length - 1 }"
+          :disabled="selectedRoom === rooms.length - 1"
+        >
+          <fa-icon icon="fa fa-circle-chevron-right"></fa-icon>
+        </button>
       </div>
     </div>
     <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }">
@@ -72,4 +87,10 @@ function changeRoom(index: number) {
 }
 
 const rooms = getRooms()
+
+function paginateRooms(direction: -1 | 1) {
+  if (selectedRoom.value === 0 && direction === -1) return
+  if (selectedRoom.value === rooms.length - 1 && direction === 1) return
+  selectedRoom.value = selectedRoom.value + direction
+}
 </script>
