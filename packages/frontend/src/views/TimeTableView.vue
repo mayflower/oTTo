@@ -6,31 +6,43 @@
       <div>Mittwoch</div>
     </div>
     <div class="flex w-full pr-14">
-      <div class="flex-1 p-2" v-for="room in rooms" :key="room.name">
+      <div class="flex-1 p-2">
         <div>
-          <div class="bg-neutral-600 p-2 rounded-md text-center">{{ room.name }}</div>
+          <RoomDropdownComponent
+            :rooms="rooms"
+            :selected-room-index="selectedRoom"
+            @on-room-click="(data) => changeRoom(data)"
+          >
+            <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
+
+            <fa-icon
+              icon="fa fa-chevron-down"
+              class="h-4 w-4 text-white absolute right-3 bottom-1/2 top-1/2 -translate-y-1/2"
+              aria-hidden="true"
+            />
+          </RoomDropdownComponent>
         </div>
       </div>
     </div>
-    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }" class="-ml-3">
-      <div class="relative ml-3">
+    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }">
+      <div class="relative">
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute flex w-full pr-14 top-0">
-          <div class="flex-1 px-2" v-for="room in rooms" :key="room.name">
+          <div class="flex-1 px-2">
             <div class="relative">
               <TimetableSlotComponent
                 class="w-full bg-red-500 p-2 rounded-md absolute"
                 :style="{
                   height: session.duration * 3 - 0.2 + 'rem',
                   top: session.start * 3 + 'rem',
-                  backgroundColor: room.color
+                  backgroundColor: rooms[selectedRoom].color
                 }"
-                v-for="session in room.sessions"
+                v-for="session in rooms[selectedRoom].sessions"
                 :key="session.name"
                 :title="session.name"
                 :host="session.host"
-                :room="room.name"
+                :room="rooms[selectedRoom].name"
                 start="10.00"
                 end="11.00"
               >
@@ -47,9 +59,17 @@
 import TimetableSlotComponent from '@/components/TimetableSlotComponent.vue'
 import { getRooms } from '@/api/sessions'
 import TimelineComponent from '@/components/TimelineComponent.vue'
+import { ref } from 'vue'
+import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
 
-const timelineStart = new Date(2023, 2, 29, 7)
-const timelineEnd = new Date(2023, 2, 29, 18)
+const timelineStart = new Date(2023, 2, 27, 8)
+const timelineEnd = new Date(2023, 2, 27, 18)
+
+const selectedRoom = ref(0)
+
+function changeRoom(index: number) {
+  selectedRoom.value = index
+}
 
 const rooms = getRooms()
 </script>

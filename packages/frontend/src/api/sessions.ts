@@ -43,7 +43,7 @@ export function getRooms() {
       ]
     },
     {
-      name: 'Große Halle',
+      name: 'Abstellkammer',
       color: '#b32765',
       sessions: [
         {
@@ -59,7 +59,7 @@ export function getRooms() {
           duration: 6
         }
       ]
-    },
+    }
     // {
     //   name: 'Große Halle',
     //   color: '#0284c7',

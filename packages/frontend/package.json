@@ -17,6 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@headlessui/vue": "^1.7.12",
     "@tailwindcss/line-clamp": "^0.4.2",
     "date-fns": "^2.29.3",
     "pinia": "^2.0.32",
