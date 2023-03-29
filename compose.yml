@@ -23,7 +23,7 @@ services:
       - POSTGRES_PASSWORD=$DB_PASSWORD
       - POSTGRES_DB=$DB_DEFAULT_DATABASE
     volumes:
-      - db-volume
+      - db-volume:/var/lib/postgresql/data
     ports:
       - 5432:5432
   adminer:
