@@ -47,16 +47,16 @@ export function getRooms() {
       color: '#b32765',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
-          start: 1,
+          name: 'Pinsel putzen',
+          host: 'Peter Pan',
+          start: 5,
           duration: 3
         },
         {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
-          duration: 6
+          name: 'Eimer auffüllen',
+          host: 'Reiner Zufall',
+          start: 10,
+          duration: 8
         }
       ]
     },
@@ -65,16 +65,22 @@ export function getRooms() {
       color: '#ea580c',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
-          start: 1,
+          name: 'Kickern für Anfänger',
+          host: 'Michael Ballack',
+          start: 0,
+          duration: 4
+        },
+        {
+          name: 'Tore halten für Profis',
+          host: 'Ulli Höhnes',
+          start: 6,
           duration: 3
         },
         {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
-          duration: 6
+          name: 'Richtig Passen',
+          host: 'Sebastian Schweinsteiger',
+          start: 11,
+          duration: 12
         }
       ]
     },
@@ -83,15 +89,15 @@ export function getRooms() {
       color: '#65a30d',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
-          start: 1,
-          duration: 3
+          name: 'Gabelstapler fahren',
+          host: 'Baggerfahrer Franz',
+          start: 7,
+          duration: 7
         },
         {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
+          name: 'Kisten Workout',
+          host: 'Arnold Schwarzenegger',
+          start: 15,
           duration: 6
         }
       ]
@@ -101,16 +107,16 @@ export function getRooms() {
       color: '#581c87',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
+          name: 'Schreibtisch aufbauen',
+          host: 'Bob der Baumeister',
           start: 1,
           duration: 3
         },
         {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
-          duration: 6
+          name: 'Bienen züchten leicht gemacht',
+          host: 'Biene Maja',
+          start: 5,
+          duration: 8
         }
       ]
     },
@@ -119,16 +125,10 @@ export function getRooms() {
       color: '#0284c7',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
-          start: 1,
-          duration: 3
-        },
-        {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
-          duration: 6
+          name: 'Schlafen',
+          host: 'Julien Bam',
+          start: 0,
+          duration: 20
         }
       ]
     },
@@ -137,16 +137,16 @@ export function getRooms() {
       color: '#f472b6',
       sessions: [
         {
-          name: 'Vue.js 3 für Profis',
-          host: 'Mare Walzl',
+          name: 'Kinderschminken',
+          host: 'Prinzessin',
           start: 1,
-          duration: 3
+          duration: 4
         },
         {
-          name: 'React.js ist schlechter als Vue',
-          host: 'Mark Zuckerberg',
-          start: 4,
-          duration: 6
+          name: 'Hüpfburg',
+          host: 'Flummy Flummy',
+          start: 9,
+          duration: 10
         }
       ]
     }
