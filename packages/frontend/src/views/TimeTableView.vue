@@ -34,16 +34,16 @@
         <button
           @click="paginateRooms(-1)"
           class="px-2 py-1 h-1"
-          :class="{ 'opacity-60': selectedRoom === 0 }"
-          :disabled="selectedRoom === 0"
+          :class="{ 'opacity-60': !canGoLeft }"
+          :disabled="!canGoLeft"
         >
           <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
         </button>
         <button
           @click="paginateRooms(1)"
           class="px-2 py-1 h-1"
-          :class="{ 'opacity-60': selectedRoom === rooms.length - 1 }"
-          :disabled="selectedRoom === rooms.length - 1"
+          :class="{ 'opacity-60': !canGoRight }"
+          :disabled="!canGoRight"
         >
           <fa-icon icon="fa fa-circle-chevron-right"></fa-icon>
         </button>
@@ -87,8 +87,8 @@ import TimelineComponent from '@/components/TimelineComponent.vue'
 import { computed, ref } from 'vue'
 import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
 
-const timelineStart = new Date(2023, 2, 27, 8)
-const timelineEnd = new Date(2023, 2, 27, 18)
+const timelineStart = new Date(2023, 2, 29, 8)
+const timelineEnd = new Date(2023, 2, 29, 18)
 
 const selectedRoom = ref(0)
 
@@ -98,9 +98,13 @@ function changeRoom(index: number) {
 
 const rooms = getRooms()
 
+const canGoLeft = computed(() => selectedRoom.value !== 0)
+const canGoRight = computed(() => rooms.length !== selectedRoom.value + roomsDisplayed.value)
+
 function paginateRooms(direction: -1 | 1) {
-  if (selectedRoom.value === 0 && direction === -1) return
-  if (selectedRoom.value === rooms.length - 1 && direction === 1) return
+  if (!canGoLeft.value && direction === -1) return
+  if (!canGoRight.value && direction === 1) return
+
   selectedRoom.value = selectedRoom.value + direction
 }
 
