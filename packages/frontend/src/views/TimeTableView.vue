@@ -12,8 +12,8 @@
         </div>
       </div>
     </div>
-    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }">
-      <div class="relative">
+    <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }" class="-ml-3">
+      <div class="relative ml-3">
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute flex w-full pr-14 top-0">
@@ -48,8 +48,8 @@ import TimetableSlotComponent from '@/components/TimetableSlotComponent.vue'
 import { getRooms } from '@/api/sessions'
 import TimelineComponent from '@/components/TimelineComponent.vue'
 
-const timelineStart = new Date(2023, 2, 27, 8)
-const timelineEnd = new Date(2023, 2, 27, 18)
+const timelineStart = new Date(2023, 2, 29, 7)
+const timelineEnd = new Date(2023, 2, 29, 18)
 
 const rooms = getRooms()
 </script>

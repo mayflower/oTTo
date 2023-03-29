@@ -12,9 +12,9 @@
           : ':' + time.toLocaleTimeString('de-DE', { minute: '2-digit' })
       }}
     </div>
-    <div class="z-10 absolute h-0.5 bg-neutral-100 w-full" :style="`top: ${timelineToNowDiff}rem`">
-      <div class="h-3.5 aspect-square rounded-full bg-neutral-100 -mt-1.5 -ml-2"></div>
-    </div>
+  </div>
+  <div class="z-10 absolute h-0.5 bg-neutral-100 w-full" :style="`top: ${timelineToNowDiff}rem`">
+    <div class="h-3.5 aspect-square rounded-full bg-neutral-100 -mt-1.5 -ml-2"></div>
   </div>
 </template>
 
