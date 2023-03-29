@@ -2,7 +2,7 @@ export function getRooms() {
   const rooms = [
     {
       name: 'Labor',
-      color: '#dc2626',
+      color: '#248746',
       sessions: [
         {
           name: 'Arduino Hacken mit LED Strips',
@@ -26,7 +26,7 @@ export function getRooms() {
     },
     {
       name: 'Große Halle',
-      color: '#0284c7',
+      color: '#2a7196',
       sessions: [
         {
           name: 'Vue.js 3 für Profis',
@@ -41,25 +41,25 @@ export function getRooms() {
           duration: 6
         }
       ]
-    }
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // },
+    },
+    {
+      name: 'Große Halle',
+      color: '#b32765',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
+    },
     // {
     //   name: 'Große Halle',
     //   color: '#0284c7',
