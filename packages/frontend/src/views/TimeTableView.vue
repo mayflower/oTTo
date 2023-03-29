@@ -5,21 +5,14 @@
       <div>Dienstag 21. März 2023</div>
       <div>Mittwoch</div>
     </div>
-    <div class="flex w-full pr-14">
-      <div class="flex-1 p-2 flex">
-        <button
-          @click="paginateRooms(-1)"
-          class="px-2 py-1 h-1"
-          :class="{ 'opacity-60': selectedRoom === 0 }"
-          :disabled="selectedRoom === 0"
-        >
-          <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
-        </button>
+    <div class="flex w-full">
+      <div class="flex-1 p-2 pr-0 flex w-full">
         <RoomDropdownComponent
           :rooms="rooms"
           :selected-room-index="selectedRoom"
           @on-room-click="(data) => changeRoom(data)"
           class="flex-1"
+          v-if="roomsDisplayed === 1"
         >
           <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
 
@@ -29,6 +22,23 @@
             aria-hidden="true"
           />
         </RoomDropdownComponent>
+        <div v-else class="flex w-full gap-4">
+          <div
+            v-for="roomIndex in roomDisplayedRange"
+            :key="roomIndex"
+            class="rounded-md flex-1 text-center bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          >
+            {{ rooms[roomIndex].name }}
+          </div>
+        </div>
+        <button
+          @click="paginateRooms(-1)"
+          class="px-2 py-1 h-1"
+          :class="{ 'opacity-60': selectedRoom === 0 }"
+          :disabled="selectedRoom === 0"
+        >
+          <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
+        </button>
         <button
           @click="paginateRooms(1)"
           class="px-2 py-1 h-1"
@@ -40,24 +50,24 @@
       </div>
     </div>
     <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }">
-      <div class="relative">
+      <div class="relative" v-resize="onTimelineResize">
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
-        <div class="absolute flex w-full pr-14 top-0">
-          <div class="flex-1 px-2">
+        <div class="absolute w-full flex pr-14 top-0">
+          <div class="flex-1 px-2" v-for="roomIndex in roomDisplayedRange" :key="roomIndex">
             <div class="relative">
               <TimetableSlotComponent
-                class="w-full bg-red-500 p-2 rounded-md absolute"
+                class="w-full bg-red-500 p-2 rounded-md absolute mt-0.5"
                 :style="{
                   height: session.duration * 3 - 0.2 + 'rem',
                   top: session.start * 3 + 'rem',
-                  backgroundColor: rooms[selectedRoom].color
+                  backgroundColor: rooms[roomIndex].color
                 }"
-                v-for="session in rooms[selectedRoom].sessions"
+                v-for="session in rooms[roomIndex].sessions"
                 :key="session.name"
                 :title="session.name"
                 :host="session.host"
-                :room="rooms[selectedRoom].name"
+                :room="rooms[roomIndex].name"
                 start="10.00"
                 end="11.00"
               >
@@ -74,7 +84,7 @@
 import TimetableSlotComponent from '@/components/TimetableSlotComponent.vue'
 import { getRooms } from '@/api/sessions'
 import TimelineComponent from '@/components/TimelineComponent.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
 
 const timelineStart = new Date(2023, 2, 27, 8)
@@ -92,5 +102,27 @@ function paginateRooms(direction: -1 | 1) {
   if (selectedRoom.value === 0 && direction === -1) return
   if (selectedRoom.value === rooms.length - 1 && direction === 1) return
   selectedRoom.value = selectedRoom.value + direction
+}
+
+const roomsDisplayed = ref(1)
+
+function generateRange(start: number, end: number): number[] {
+  return Array.from({ length: end - start }, (_, i) => start + i)
+}
+
+const roomDisplayedRange = computed(() => {
+  const firstIndex = selectedRoom.value
+  const lastIndex = selectedRoom.value + roomsDisplayed.value
+
+  const arr = generateRange(firstIndex, lastIndex)
+
+  return arr
+})
+
+function onTimelineResize(sizes: { width: number }) {
+  const minRoomWidth = 275
+  const roomsDisplayedNew = Math.floor(sizes.width / minRoomWidth) || 1
+
+  roomsDisplayed.value = roomsDisplayedNew
 }
 </script>

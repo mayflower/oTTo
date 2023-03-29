@@ -59,97 +59,97 @@ export function getRooms() {
           duration: 6
         }
       ]
+    },
+    {
+      name: 'Hundehütte',
+      color: '#ea580c',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
+    },
+    {
+      name: 'Lager',
+      color: '#65a30d',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
+    },
+    {
+      name: 'Arbeitszimmer',
+      color: '#581c87',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
+    },
+    {
+      name: 'Büro',
+      color: '#0284c7',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
+    },
+    {
+      name: 'Schloss',
+      color: '#f472b6',
+      sessions: [
+        {
+          name: 'Vue.js 3 für Profis',
+          host: 'Mare Walzl',
+          start: 1,
+          duration: 3
+        },
+        {
+          name: 'React.js ist schlechter als Vue',
+          host: 'Mark Zuckerberg',
+          start: 4,
+          duration: 6
+        }
+      ]
     }
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'Große Halle',
-    //   color: '#0284c7',
-    //   sessions: [
-    //     {
-    //       name: 'Vue.js 3 für Profis',
-    //       host: 'Mare Walzl',
-    //       start: 1,
-    //       duration: 3
-    //     },
-    //     {
-    //       name: 'React.js ist schlechter als Vue',
-    //       host: 'Mark Zuckerberg',
-    //       start: 4,
-    //       duration: 6
-    //     }
-    //   ]
-    // }
   ]
 
   return rooms

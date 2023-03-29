@@ -12,6 +12,17 @@ import { initializeIcons } from './icons'
 
 const app = createApp(App)
 
+app.directive('resize', {
+  mounted: function (el: HTMLElement, binding) {
+    const onResizeCallback = binding.value
+    new ResizeObserver(() => {
+      const width = el.clientWidth
+      const height = el.clientHeight
+      onResizeCallback({ width, height })
+    }).observe(el)
+  }
+})
+
 app.use(createPinia())
 app.use(router)
 
