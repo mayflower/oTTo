@@ -54,7 +54,7 @@
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute w-full flex pr-14 top-0 h-full">
-          <CarouselComponent :rooms-displayed="roomsDisplayed" class="w-full pr-14 top-0">
+          <CarouselComponent id="swiper" :rooms-displayed="roomsDisplayed" class="w-full pr-14 top-0">
             <swiper-slide v-for="room in rooms" :key="room.name" class="px-2">
               <div class="relative w-full h-full">
                 <TimetableSlotComponent
@@ -89,7 +89,6 @@ import TimelineComponent from '@/components/TimelineComponent.vue'
 import { computed, ref } from 'vue'
 import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
 import CarouselComponent from '@/components/CarouselComponent.vue'
-
 import { SwiperSlide } from 'swiper/vue'
 
 const timelineStart = new Date(2023, 2, 29, 8)
@@ -109,6 +108,16 @@ const canGoRight = computed(() => rooms.length !== selectedRoom.value + roomsDis
 function paginateRooms(direction: -1 | 1) {
   if (!canGoLeft.value && direction === -1) return
   if (!canGoRight.value && direction === 1) return
+
+  if (direction === 1) {
+    const swiper = (document.getElementById("swiper") as any).swiper
+    swiper.slideNext()
+  }
+
+  if (direction === -1) {
+    const swiper = (document.getElementById("swiper") as any).swiper
+    swiper.slidePrev()
+  }
 
   selectedRoom.value = selectedRoom.value + direction
 }
