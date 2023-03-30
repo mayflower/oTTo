@@ -1,3 +1,4 @@
+--changeset fixtures:1.1 contextFilter:fixtures
 INSERT INTO public.room (id, name)
 VALUES
 (0, 'Computer Lab'),
