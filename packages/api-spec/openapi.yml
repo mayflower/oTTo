@@ -55,7 +55,7 @@ components:
           type: string
           readOnly: true
           nullable: false
-          example: "abcdefg"
+          example: 1
         name:
           title: "Name"
           description: "name of the room"
@@ -82,15 +82,23 @@ components:
         id:
           title: "ID"
           description: "generated unique identifier"
-          type: string
+          type: number
           readOnly: true
           nullable: false
-          example: "abcdefg"
+          example: 1
+        roomId:
+          title: "RoomID"
+          description: "reference to the room"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
         name:
           title: "Name"
           description: "name of the session"
           type: string
           nullable: false
+          maxLength: 128
           example: "Kubernetes for Beginner#1"
         description:
           title: "Description"
