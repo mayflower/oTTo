@@ -24,6 +24,7 @@ room : name = "Name of the Room"
 room : timeslots = timeslot[]
 
 timeslotSize : size = integer
+timeslotSize : name = "Name of the Timeslot size (e.g. short break, lunch, middle size session, ...)"
 timeslotSize : timeslots = timeslot[]
 
 timeslot : size = timeslotSize
