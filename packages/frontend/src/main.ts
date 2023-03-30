@@ -3,11 +3,12 @@ import { createPinia } from 'pinia'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import 'simplebar'
 import 'simplebar/dist/simplebar.css'
-
+import { register } from 'swiper/element/bundle'
 import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import 'swiper/css';
 import { initializeIcons } from './icons'
 
 const app = createApp(App)
@@ -22,6 +23,8 @@ app.directive('resize', {
     }).observe(el)
   }
 })
+
+register()
 
 app.use(createPinia())
 app.use(router)

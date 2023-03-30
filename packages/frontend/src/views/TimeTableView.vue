@@ -54,26 +54,28 @@
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute w-full flex pr-14 top-0">
-          <div class="flex-1 px-2" v-for="roomIndex in roomDisplayedRange" :key="roomIndex">
-            <div class="relative">
-              <TimetableSlotComponent
-                class="w-full bg-red-500 p-2 rounded-md absolute mt-0.5"
-                :style="{
-                  height: session.duration * 3 - 0.2 + 'rem',
-                  top: session.start * 3 + 'rem',
-                  backgroundColor: rooms[roomIndex].color
-                }"
-                v-for="session in rooms[roomIndex].sessions"
-                :key="session.name"
-                :title="session.name"
-                :host="session.host"
-                :room="rooms[roomIndex].name"
-                start="10.00"
-                end="11.00"
-              >
-              </TimetableSlotComponent>
-            </div>
-          </div>
+          <CarouselComponent class=" w-full pr-14 top-0">
+            <swiper-slide v-for="roomIndex in roomDisplayedRange" :key="roomIndex">
+              <div class="relative">
+                <TimetableSlotComponent
+                  class="w-full bg-red-500 p-2 rounded-md mt-0.5"
+                  :style="{
+                    height: session.duration * 3 - 0.2 + 'rem',
+                    top: session.start * 3 + 'rem',
+                    backgroundColor: rooms[roomIndex].color
+                  }"
+                  v-for="session in rooms[roomIndex].sessions"
+                  :key="session.name"
+                  :title="session.name"
+                  :host="session.host"
+                  :room="rooms[roomIndex].name"
+                  start="10.00"
+                  end="11.00"
+                >
+                </TimetableSlotComponent>
+              </div>
+            </swiper-slide>
+          </CarouselComponent>
         </div>
       </div>
     </div>
@@ -86,6 +88,9 @@ import { getRooms } from '@/api/sessions'
 import TimelineComponent from '@/components/TimelineComponent.vue'
 import { computed, ref } from 'vue'
 import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
+import CarouselComponent from '@/components/CarouselComponent.vue'
+
+import { SwiperSlide } from 'swiper/vue'
 
 const timelineStart = new Date(2023, 2, 29, 8)
 const timelineEnd = new Date(2023, 2, 29, 18)
