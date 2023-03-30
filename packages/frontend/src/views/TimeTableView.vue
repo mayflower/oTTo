@@ -55,20 +55,20 @@
 
         <div class="absolute w-full flex pr-14 top-0">
           <CarouselComponent class=" w-full pr-14 top-0">
-            <swiper-slide v-for="roomIndex in roomDisplayedRange" :key="roomIndex">
-              <div class="relative">
+            <swiper-slide v-for="room in rooms" :key="room.name">
+              <div class="relative px-2 w-full h-full">
                 <TimetableSlotComponent
                   class="w-full bg-red-500 p-2 rounded-md mt-0.5"
                   :style="{
                     height: session.duration * 3 - 0.2 + 'rem',
                     top: session.start * 3 + 'rem',
-                    backgroundColor: rooms[roomIndex].color
+                    backgroundColor: room.color
                   }"
-                  v-for="session in rooms[roomIndex].sessions"
+                  v-for="session in room.sessions"
                   :key="session.name"
                   :title="session.name"
                   :host="session.host"
-                  :room="rooms[roomIndex].name"
+                  :room="room.name"
                   start="10.00"
                   end="11.00"
                 >

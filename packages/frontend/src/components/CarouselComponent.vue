@@ -1,8 +1,6 @@
 <template>
   <swiper
     :slides-per-view="4"
-    :space-between="spaceBetween"
-    :centered-slides="true"
     :breakpoints="{
       768: {
         slidesPerView: 3
@@ -18,7 +16,6 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue'
 
-const spaceBetween = 10
 // const onProgress = (e: any) => {
 //   const [swiper, progress] = e.detail
 // }
