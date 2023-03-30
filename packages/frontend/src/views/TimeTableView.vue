@@ -53,12 +53,12 @@
       <div class="relative ml-3" v-resize="onTimelineResize">
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
-        <div class="absolute w-full flex pr-14 top-0">
-          <CarouselComponent class=" w-full pr-14 top-0">
-            <swiper-slide v-for="room in rooms" :key="room.name">
-              <div class="relative px-2 w-full h-full">
+        <div class="absolute w-full flex pr-14 top-0 h-full">
+          <CarouselComponent :rooms-displayed="roomsDisplayed" class="w-full pr-14 top-0">
+            <swiper-slide v-for="room in rooms" :key="room.name" class="px-2">
+              <div class="relative w-full h-full">
                 <TimetableSlotComponent
-                  class="w-full bg-red-500 p-2 rounded-md mt-0.5"
+                  class="w-full bg-red-500 p-2 rounded-md mt-0.5 absolute"
                   :style="{
                     height: session.duration * 3 - 0.2 + 'rem',
                     top: session.start * 3 + 'rem',

@@ -1,11 +1,6 @@
 <template>
   <swiper
-    :slides-per-view="4"
-    :breakpoints="{
-      768: {
-        slidesPerView: 3
-      }
-    }"
+    :slides-per-view="roomsDisplayed"
     :navigation="true"
     @slide-change="onSlideChange"
   >
@@ -16,9 +11,7 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue'
 
-// const onProgress = (e: any) => {
-//   const [swiper, progress] = e.detail
-// }
+defineProps(['roomsDisplayed'])
 
 const onSlideChange = (e: any) => {
   console.log('slide changed')
