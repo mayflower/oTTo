@@ -5,48 +5,54 @@
       <div>Dienstag 21. März 2023</div>
       <div>Mittwoch</div>
     </div>
-    <div class="flex w-full">
-      <div class="flex-1 p-2 pr-0 flex w-full">
-        <RoomDropdownComponent
-          :rooms="rooms"
-          :selected-room-index="selectedRoom"
-          @on-room-click="(data) => changeRoom(data)"
-          class="flex-1"
-          v-if="roomsDisplayed === 1"
-        >
-          <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
-
-          <fa-icon
-            icon="fa fa-chevron-down"
-            class="h-4 w-4 text-white absolute right-3 bottom-1/2 top-1/2 -translate-y-1/2"
-            aria-hidden="true"
-          />
-        </RoomDropdownComponent>
-        <div v-else class="flex w-full gap-4">
-          <div
-            v-for="roomIndex in roomDisplayedRange"
-            :key="roomIndex"
-            class="rounded-md flex-1 text-center bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+    <div class="w-full">
+      <div class="flex">
+        <div class="flex-1 pb-2 pr-14 w-full">
+          <RoomDropdownComponent
+            :rooms="rooms"
+            :selected-room-index="selectedRoom"
+            @on-room-click="(data) => changeRoom(data)"
+            class="flex-1"
+            v-if="roomsDisplayed === 1"
           >
-            {{ rooms[roomIndex].name }}
+            <div class="flex-1">{{ rooms[selectedRoom].name }}</div>
+
+            <fa-icon
+              icon="fa fa-chevron-down"
+              class="h-4 w-4 text-white absolute right-3 bottom-1/2 top-1/2 -translate-y-1/2"
+              aria-hidden="true"
+            />
+          </RoomDropdownComponent>
+          <div v-else class="">
+            <CarouselComponent id="swiper-header" :rooms-displayed="roomsDisplayed">
+              <swiper-slide v-for="room in rooms" :key="room.name">
+                <div
+                  class="rounded-md text-center bg-black bg-opacity-20 mx-2 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  {{ room.name }}
+                </div>
+              </swiper-slide>
+            </CarouselComponent>
           </div>
         </div>
-        <button
-          @click="paginateRooms(-1)"
-          class="px-2 py-1 h-1"
-          :class="{ 'opacity-60': !canGoLeft }"
-          :disabled="!canGoLeft"
-        >
-          <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
-        </button>
-        <button
-          @click="paginateRooms(1)"
-          class="px-2 py-1 h-1"
-          :class="{ 'opacity-60': !canGoRight }"
-          :disabled="!canGoRight"
-        >
-          <fa-icon icon="fa fa-circle-chevron-right"></fa-icon>
-        </button>
+        <div class="-ml-14">
+          <button
+            @click="paginateRooms(-1)"
+            class="px-2 py-1 h-1"
+            :class="{ 'opacity-60': !canGoLeft }"
+            :disabled="!canGoLeft"
+          >
+            <fa-icon icon="fa fa-circle-chevron-left"></fa-icon>
+          </button>
+          <button
+            @click="paginateRooms(1)"
+            class="px-1 py-1 h-1"
+            :class="{ 'opacity-60': !canGoRight }"
+            :disabled="!canGoRight"
+          >
+            <fa-icon icon="fa fa-circle-chevron-right"></fa-icon>
+          </button>
+        </div>
       </div>
     </div>
     <div data-simplebar :style="{ height: 'calc(100vh - 250px)' }" class="-ml-3">
@@ -54,7 +60,12 @@
         <TimelineComponent :start="timelineStart" :end="timelineEnd" />
 
         <div class="absolute w-full flex pr-14 top-0 h-full">
-          <CarouselComponent id="swiper" :rooms-displayed="roomsDisplayed" class="w-full pr-14 top-0">
+          <CarouselComponent
+            id="swiper"
+            :rooms-displayed="roomsDisplayed"
+            class="w-full pr-14 top-0"
+            @on-progress="onProgress"
+          >
             <swiper-slide v-for="room in rooms" :key="room.name" class="px-2">
               <div class="relative w-full h-full">
                 <TimetableSlotComponent
@@ -110,16 +121,24 @@ function paginateRooms(direction: -1 | 1) {
   if (!canGoRight.value && direction === 1) return
 
   if (direction === 1) {
-    const swiper = (document.getElementById("swiper") as any).swiper
+    const swiper = (document.getElementById('swiper') as any).swiper
     swiper.slideNext()
   }
 
   if (direction === -1) {
-    const swiper = (document.getElementById("swiper") as any).swiper
+    const swiper = (document.getElementById('swiper') as any).swiper
     swiper.slidePrev()
   }
 
   selectedRoom.value = selectedRoom.value + direction
+}
+
+function onProgress(progress: number, e: any) {
+  console.log(e)
+  const swiper = (document.getElementById('swiper-header') as any)?.swiper
+  if (swiper) {
+    swiper.setProgress(progress, 0)
+  }
 }
 
 const roomsDisplayed = ref(1)
