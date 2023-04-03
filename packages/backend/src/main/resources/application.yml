@@ -3,6 +3,7 @@
 spring:
   profiles:
     default: local
+  devtools.add-properties: false
   # database-connection
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -22,11 +23,10 @@ spring:
 spring.config.activate.on-profile: local
 
 spring:
+  devtools.add-properties: true
   # database-connection
   datasource:
-    url: jdbc:postgresql://localhost:5432/backend
-    username: backend
-    password: backend
+    url: jdbc:postgresql://localhost:5432/otto
   liquibase.contexts: fixtures
 ---
 spring.config.activate.on-profile: docker
