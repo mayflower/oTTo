@@ -23,7 +23,7 @@
               aria-hidden="true"
             />
           </RoomDropdownComponent>
-          <div v-else class="">
+          <div v-else>
             <CarouselComponent id="swiper-header" :rooms-displayed="roomsDisplayed">
               <swiper-slide v-for="room in rooms" :key="room.name">
                 <div
@@ -105,16 +105,16 @@ import { SwiperSlide } from 'swiper/vue'
 const timelineStart = new Date(2023, 2, 29, 8)
 const timelineEnd = new Date(2023, 2, 29, 18)
 
+const rooms = getRooms()
 const selectedRoom = ref(0)
+const roomsDisplayed = ref(1)
+
+const canGoLeft = computed(() => selectedRoom.value !== 0)
+const canGoRight = computed(() => rooms.length !== selectedRoom.value + roomsDisplayed.value)
 
 function changeRoom(index: number) {
   selectedRoom.value = index
 }
-
-const rooms = getRooms()
-
-const canGoLeft = computed(() => selectedRoom.value !== 0)
-const canGoRight = computed(() => rooms.length !== selectedRoom.value + roomsDisplayed.value)
 
 function paginateRooms(direction: -1 | 1) {
   if (!canGoLeft.value && direction === -1) return
@@ -133,28 +133,12 @@ function paginateRooms(direction: -1 | 1) {
   selectedRoom.value = selectedRoom.value + direction
 }
 
-function onProgress(progress: number, e: any) {
-  console.log(e)
+function onProgress(progress: number) {
   const swiper = (document.getElementById('swiper-header') as any)?.swiper
   if (swiper) {
     swiper.setProgress(progress, 0)
   }
 }
-
-const roomsDisplayed = ref(1)
-
-function generateRange(start: number, end: number): number[] {
-  return Array.from({ length: end - start }, (_, i) => start + i)
-}
-
-const roomDisplayedRange = computed(() => {
-  const firstIndex = selectedRoom.value
-  const lastIndex = selectedRoom.value + roomsDisplayed.value
-
-  const arr = generateRange(firstIndex, lastIndex)
-
-  return arr
-})
 
 function onTimelineResize(sizes: { width: number }) {
   const minRoomWidth = 275
