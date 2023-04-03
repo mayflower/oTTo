@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-spring-db-config
+data:
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ .Values.spring.config.dbEndpoint }}:5432/{{ .Values.spring.config.defaultDB}}?useSSL=false"
+  SPRING_LIQUIBASE_CONTEXT: fixtures

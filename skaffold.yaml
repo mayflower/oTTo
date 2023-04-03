@@ -1,0 +1,24 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+metadata:
+  name: otto
+requires:
+  - configs:
+      - skaffold-db
+    path: helm/skaffold-db.yaml
+build:
+  artifacts:
+  - image: backend
+    context: .
+    jib:
+      project: packages/backend
+      type: maven
+deploy:
+  helm:
+    releases:
+      - name: backend
+        namespace: 'otto'
+        chartPath: 'helm/otto'
+        valuesFiles:
+          - helm/otto/values.yaml
+        version: 0.1.0
