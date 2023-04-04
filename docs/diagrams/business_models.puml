@@ -11,6 +11,10 @@ object sponsor
 
 event : name = "Name of the Event/Conference"
 event : description = "Description of the Event/Conference"
+event : location = "Location of the Event/Conference"
+event : details = "Markdown introduction of the Event/Conference"
+event : image = "Image of the Event/Conference"
+event : url = "URL of the Event/Conference"
 event : startDate = "Start Date of the Event/Conference"
 event : endDate = "End Date of the Event/Conference"
 event : style = style
