@@ -7,6 +7,7 @@ object timeslotSize
 object timeslot
 object session
 object style
+object sponsor
 
 event : name = "Name of the Event/Conference"
 event : description = "Description of the Event/Conference"
@@ -15,6 +16,11 @@ event : endDate = "End Date of the Event/Conference"
 event : style = style
 event : days = day[]
 event : timeslotSizes = timeslotSizes[]
+event : sponsors = sponsor[]
+
+sponsor : name = "Name of the sponsor"
+sponsor : image = "Logo of the sponsor"
+sponsor : url = "URL of the sponsor"
 
 day : date = "Date of the Day"
 day : note = "A note for special days"
@@ -48,10 +54,12 @@ event --> day
 event --> style
 event --* timeslotSize
 event --> session
+event --> sponsor
 
 day --> room
 
 room --> timeslot
 timeslot <-- session
+timeslot --* timeslotSize
 
 @enduml
