@@ -22,6 +22,8 @@
             pkgs.skaffold
             pkgs.openjdk
             pkgs.nodejs-18_x
+            pkgs.buildpack
+            pkgs.kubernetes-helm
         ];
       };
       overlays.default = (final: prev: {
