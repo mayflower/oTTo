@@ -66,30 +66,27 @@
             class="w-full pr-14 top-0"
             @on-progress="onProgress"
           >
-            <swiper-slide v-for="room in rooms" :key="room.name" class="px-2">
+            <swiper-slide v-for="(room, index) in rooms" :key="room.name" class="px-2">
               <div class="relative w-full h-full">
                 <TimetableSlotComponent
-                  class="w-full bg-red-500 p-2 rounded-md mt-0.5 absolute"
-                  :style="{
-                    height: session.duration * 3 - 0.2 + 'rem',
-                    top: session.start * 3 + 'rem',
-                    backgroundColor: room.color
-                  }"
                   v-for="session in room.sessions"
                   :key="session.name"
                   :title="session.name"
                   :host="session.host"
-                  :room="room.name"
+                  :room="room"
+                  :sessionStart="session.start"
                   start="10.00"
                   end="11.00"
-                >
-                </TimetableSlotComponent>
+                  :index="index"
+                  :duration="session.duration"
+                  :is-keynote="session.isKeynote"
+                />
               </div>
             </swiper-slide>
           </CarouselComponent>
         </div>
         <div
-          class="absolute w-full flex pr-14 top-0 h-full"
+          class="absolute w-full flex top-0 h-full"
           v-for="pause in breaks"
           :key="pause.name"
           :style="{
@@ -97,12 +94,12 @@
             top: pause.start * 3 + 'rem'
           }"
         >
-         <div class="relative w-full h-full mx-2">
-          <div class="absolute bg-slate-50 opacity-30 rounded-md w-full h-full" />
-          <div class="absolute w-full h-full flex justify-center items-center">
-            {{ pause.name }}
+          <div class="relative w-full h-full">
+            <div class="absolute bg-slate-50 opacity-30 w-full h-full" />
+            <div class="absolute w-full h-full flex justify-center items-center">
+              {{ pause.name }}
+            </div>
           </div>
-         </div>
         </div>
       </div>
     </div>

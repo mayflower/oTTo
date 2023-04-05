@@ -64,13 +64,14 @@ export function getRooms() {
         {
           name: 'Pinsel putzen',
           host: 'Peter Pan',
-          start: 5,
-          duration: 3
+          start: 8,
+          duration: 2,
+          isKeynote: true
         },
         {
           name: 'Eimer auffüllen',
           host: 'Reiner Zufall',
-          start: 10,
+          start: 11,
           duration: 8
         }
       ]
@@ -88,8 +89,8 @@ export function getRooms() {
         {
           name: 'Tore halten für Profis',
           host: 'Ulli Höhnes',
-          start: 6,
-          duration: 3
+          start: 4,
+          duration: 2
         },
         {
           name: 'Richtig Passen',
@@ -106,7 +107,7 @@ export function getRooms() {
         {
           name: 'Gabelstapler fahren',
           host: 'Baggerfahrer Franz',
-          start: 7,
+          start: 11,
           duration: 7
         },
         {
@@ -130,7 +131,7 @@ export function getRooms() {
         {
           name: 'Bienen züchten leicht gemacht',
           host: 'Biene Maja',
-          start: 5,
+          start: 11,
           duration: 8
         }
       ]
@@ -160,7 +161,7 @@ export function getRooms() {
         {
           name: 'Hüpfburg',
           host: 'Flummy Flummy',
-          start: 9,
+          start: 11,
           duration: 10
         }
       ]
