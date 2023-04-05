@@ -27,7 +27,16 @@ spec:
       serviceAccountName: {{ include "otto.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      minReadySeconds: {{ .Values.minReadySeconds }}
+      {{- if .Values.spring.config.wait }}
+      initContainers:
+        - name: wait-for
+          image: ghcr.io/patrickdappollonio/wait-for:latest
+          command:
+            - /wait-for    
+          args:
+            - --host="{{- .Values.spring.config.dbEndpoint }}:5432"
+            - -t=60s
+      {{- end}}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

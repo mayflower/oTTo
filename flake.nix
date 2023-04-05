@@ -20,7 +20,7 @@
         buildInputs = with pkgs; [
             pkgs.minikube
             pkgs.skaffold
-            pkgs.openjdk
+            pkgs.openjdk_headless
             pkgs.nodejs-18_x
             pkgs.buildpack
             pkgs.kubernetes-helm

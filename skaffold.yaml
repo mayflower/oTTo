@@ -2,10 +2,6 @@ apiVersion: skaffold/v4beta2
 kind: Config
 metadata:
   name: otto
-requires:
-  - configs:
-      - skaffold-db
-    path: helm/skaffold-db.yaml
 build:
   artifacts:
   - image: backend
@@ -22,3 +18,10 @@ deploy:
         valuesFiles:
           - helm/otto/values.yaml
         version: 0.1.0
+      - name: db
+        namespace: 'otto'
+        createNamespace: true
+        remoteChart: 'postgresql'
+        repo: 'https://charts.bitnami.com/bitnami'
+        valuesFiles:
+          - "helm/otto/values.yaml"
