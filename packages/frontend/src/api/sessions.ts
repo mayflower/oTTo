@@ -1,3 +1,18 @@
+export function getBreaks() {
+  return [
+    {
+      name: 'Mittagessen',
+      start: 6,
+      duration: 2
+    },
+    {
+      name: 'Pause',
+      start: 10,
+      duration: 1
+    }
+  ];
+}
+
 export function getRooms() {
   const rooms = [
     {
@@ -19,7 +34,7 @@ export function getRooms() {
         {
           name: 'Debatieren über den Sinn des Lebens denn das Leben hat überhaupt keinen Sinn und ist einfach nur Toll',
           host: 'Elon Musk',
-          start: 8,
+          start: 11,
           duration: 10
         }
       ]
@@ -38,7 +53,7 @@ export function getRooms() {
           name: 'React.js ist schlechter als Vue',
           host: 'Mark Zuckerberg',
           start: 4,
-          duration: 6
+          duration: 2
         }
       ]
     },

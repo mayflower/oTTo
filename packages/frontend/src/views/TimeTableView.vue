@@ -88,6 +88,22 @@
             </swiper-slide>
           </CarouselComponent>
         </div>
+        <div
+          class="absolute w-full flex pr-14 top-0 h-full"
+          v-for="pause in breaks"
+          :key="pause.name"
+          :style="{
+            height: pause.duration * 3 + 'rem',
+            top: pause.start * 3 + 'rem'
+          }"
+        >
+         <div class="relative w-full h-full mx-2">
+          <div class="absolute bg-slate-50 opacity-30 rounded-md w-full h-full" />
+          <div class="absolute w-full h-full flex justify-center items-center">
+            {{ pause.name }}
+          </div>
+         </div>
+        </div>
       </div>
     </div>
   </div>
@@ -95,7 +111,7 @@
 
 <script setup lang="ts">
 import TimetableSlotComponent from '@/components/TimetableSlotComponent.vue'
-import { getRooms } from '@/api/sessions'
+import { getRooms, getBreaks } from '@/api/sessions'
 import TimelineComponent from '@/components/TimelineComponent.vue'
 import { computed, ref } from 'vue'
 import RoomDropdownComponent from '@/components/RoomDropdownComponent.vue'
@@ -106,6 +122,7 @@ const timelineStart = new Date(2023, 2, 29, 8)
 const timelineEnd = new Date(2023, 2, 29, 18)
 
 const rooms = getRooms()
+const breaks = getBreaks()
 const selectedRoom = ref(0)
 const roomsDisplayed = ref(1)
 
