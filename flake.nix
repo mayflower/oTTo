@@ -19,6 +19,7 @@
         name = "otto-dev";
         buildInputs = with pkgs; [
             pkgs.minikube
+            pkgs.kubectl
             pkgs.skaffold
             pkgs.openjdk_headless
             pkgs.nodejs-18_x
