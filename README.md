@@ -26,4 +26,4 @@ We use [direnv](https://direnv.net/) and the nix package manager to manage the l
 6. Start a local development cluster with `minikube start`
 7. Deploy the application in dev mode with `skaffold dev`
 8. For dev purposes, tunnel to the backend service with `kubectl --namespace otto port-forward svc/backend-otto 8080:8080`
-9. Im browser http://localhost:8080/
+9. Open url http://localhost:8080/
