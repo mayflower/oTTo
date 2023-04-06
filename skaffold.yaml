@@ -25,4 +25,4 @@ deploy:
         remoteChart: 'postgresql'
         repo: 'https://charts.bitnami.com/bitnami'
         valuesFiles:
-          - "helm/otto/values.yaml"
+          - "helm/dev-db-config.yaml"
