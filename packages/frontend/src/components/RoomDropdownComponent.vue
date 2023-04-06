@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
-const props = defineProps(['rooms', 'selectedRoomIndex'])
+defineProps(['rooms', 'selectedRoomIndex'])
 
 const emit = defineEmits(['onRoomClick'])
 

@@ -5,7 +5,9 @@ import {
   faLocationDot,
   faChevronDown,
   faCircleChevronLeft,
-  faCircleChevronRight
+  faCircleChevronRight,
+  faChevronLeft,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons'
 
 export function initializeIcons() {
@@ -15,6 +17,8 @@ export function initializeIcons() {
     faLocationDot,
     faChevronDown,
     faCircleChevronLeft,
-    faCircleChevronRight
+    faCircleChevronRight,
+    faChevronLeft,
+    faChevronRight
   )
 }

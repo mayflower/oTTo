@@ -78,6 +78,7 @@
                   start="10.00"
                   end="11.00"
                   :index="index"
+                  :rooms-count="rooms.length"
                   :duration="session.duration"
                   :is-keynote="session.isKeynote"
                 />
