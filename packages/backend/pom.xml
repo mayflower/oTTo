@@ -24,6 +24,8 @@
         <javax-validation.version>2.0.1.Final</javax-validation.version>
         <swagger-annotations.version>2.2.8</swagger-annotations.version>
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <liquibase.version>4.20.0</liquibase.version>
+        <ulidj.version>1.0.0</ulidj.version>
 
         <!-- plugin version -->
         <plugins.openapi-generator.version>6.4.0</plugins.openapi-generator.version>
@@ -48,7 +50,14 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- deps for generated sources to compile -->
+            <!-- ulid -->
+            <dependency>
+                <groupId>io.azam.ulidj</groupId>
+                <artifactId>ulidj</artifactId>
+                <version>${ulidj.version}</version>
+            </dependency>
+
+            <!-- api -->
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
@@ -68,32 +77,16 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- ulid -->
+        <dependency>
+            <groupId>io.azam.ulidj</groupId>
+            <artifactId>ulidj</artifactId>
+        </dependency>
+
+        <!-- api -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-reflect</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -106,6 +99,51 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
+        </dependency>
+
+        <!-- persistence -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- kotlin -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
     </dependencies>
 
@@ -175,6 +213,11 @@
                         <to>
                             <image>${docker.image-name}:${docker.image-tag}</image>
                         </to>
+                        <container>
+                            <jvmFlags>
+                                <jvmFlag>-Dspring.profiles.active=docker</jvmFlag>
+                            </jvmFlags>
+                        </container>
                     </configuration>
                 </plugin>
 
@@ -188,10 +231,22 @@
                             <arg>-Xjsr305=strict</arg>
                         </args>
                         <compilerPlugins>
+                            <plugin>jpa</plugin>
                             <plugin>spring</plugin>
+                            <plugin>all-open</plugin>
                         </compilerPlugins>
+                        <pluginOptions>
+                            <option>all-open:annotation=jakarta.persistence.Entity</option>
+                            <option>all-open:annotation=jakarta.persistence.Embeddable</option>
+                            <option>all-open:annotation=jakarta.persistence.MappedSuperclass</option>
+                        </pluginOptions>
                     </configuration>
                     <dependencies>
+                        <dependency>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlin-maven-noarg</artifactId>
+                            <version>${kotlin.version}</version>
+                        </dependency>
                         <dependency>
                             <groupId>org.jetbrains.kotlin</groupId>
                             <artifactId>kotlin-maven-allopen</artifactId>
@@ -206,6 +261,10 @@
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
