@@ -26,3 +26,8 @@ deploy:
         repo: 'https://charts.bitnami.com/bitnami'
         valuesFiles:
           - "helm/dev-db-config.yaml"
+portForward:
+  - resourceType: Service
+    resourceName: backend-otto
+    namespace: otto
+    port: 8080
