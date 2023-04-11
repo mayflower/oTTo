@@ -50,13 +50,22 @@
       :style="calculateKeynoteSpaceRight()"
     >
       <div class="h-full overflow-hidden flex justify-around">
-        <fa-icon v-for="ind in (roomsCount - index - 1) * 2" :key="ind" class="h-full" icon="chevron-left"></fa-icon>
+        <fa-icon
+          v-for="ind in (roomsCount - index - 1) * 2"
+          :key="ind"
+          class="h-full"
+          icon="chevron-left"
+        ></fa-icon>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import theme from 'tailwindcss/defaultTheme'
+
+const sessionXMargin = `${theme.spacing[2]}`
+
 const props = defineProps([
   'title',
   'host',
@@ -70,25 +79,28 @@ const props = defineProps([
   'roomsCount'
 ])
 
+function totalMargin(numCoveredSessions: number) {
+  return `${sessionXMargin} * (2 * ${numCoveredSessions} + 1)`
+}
+
 function calculateKeynoteSpaceLeft() {
-  const baseGap = '8px'
-  const gapSpaceCalc = `${baseGap} * 2 * ${props.index} + ${baseGap}`
+  const numOverlayedSessions = props.index
+  const marginTotal = totalMargin(numOverlayedSessions)
 
   return {
-    transform: `translateX(calc(-100% + (${gapSpaceCalc})))`,
-    width: `calc(100% * ${props.index} + (${gapSpaceCalc}))`,
-    margin: `0 calc(-${baseGap}  * (${props.index} * 2 + 1))`,
+    transform: `translateX(-100%)`,
+    width: `calc(100% * ${numOverlayedSessions} + (${marginTotal}))`,
     height: '100%'
   }
 }
 
 function calculateKeynoteSpaceRight() {
-  const baseGap = '8px'
-  const gapSpaceCalc = `${props.roomsCount} - ${props.index} - 1`
+  const numOverlayedSessions = props.roomsCount - props.index - 1
+  const marginTotal = totalMargin(numOverlayedSessions)
 
   return {
-    transform: `translateX(calc(100% / (${gapSpaceCalc}) - (${baseGap} * 2)))`,
-    width: `calc(100% * (${gapSpaceCalc}) + (${baseGap} * (${props.roomsCount} - (${props.index} + 1)) * 2))`,
+    transform: `translateX(calc((100% - ${marginTotal}) / ${numOverlayedSessions}))`,
+    width: `calc(100% * ${numOverlayedSessions} + ${marginTotal})`,
     height: '100%'
   }
 }
