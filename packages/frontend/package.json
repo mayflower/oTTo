@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -14,7 +14,15 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@headlessui/vue": "^1.7.12",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "date-fns": "^2.29.3",
     "pinia": "^2.0.32",
+    "simplebar": "^2.4.3",
+    "swiper": "^9.1.1",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
     "rest-client": "file:./generated-sources/client"
@@ -36,6 +44,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
+    "sass": "^1.59.3",
     "tailwindcss": "^3.2.7",
     "typescript": "~4.8.4",
     "vite": "^4.1.4",

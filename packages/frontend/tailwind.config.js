@@ -3,7 +3,11 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
   theme: {
-    extend: {}
+    extend: {
+      transitionProperty: {
+        'max-height': 'max-height'
+      }
+    }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')],
 }

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-neutral-700 text-white;
+}
+
+.simplebar-scrollbar {
+  @apply bg-gradient-to-b from-neutral-400  to-neutral-600
+}
