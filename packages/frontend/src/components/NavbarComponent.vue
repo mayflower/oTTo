@@ -49,10 +49,6 @@ let menuItems = [
   {
     route: 'addSession',
     name: 'Neue Session hinzufügen'
-  },
-  {
-    route: 'addSession',
-    name: 'Adminbereich'
   }
 ]
 let showMenu = ref(false)
