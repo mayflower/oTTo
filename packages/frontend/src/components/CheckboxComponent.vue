@@ -1,8 +1,8 @@
 <template>
   <div class="w-full md:w-1/2 px-3 pb-4 md:mt-[23px]">
-    <div class="flex items-center pl-4 border border-neutral-600 hover:cursor-pointer">
+    <div class="flex items-center pl-2 border border-neutral-600 hover:cursor-pointer">
       <Field
-        v-slot="{ field, value }"
+        v-slot="{ field }"
         :name="fieldName"
         type="checkbox"
         :value="true"
@@ -10,7 +10,7 @@
       >
         <label
           :for="fieldName"
-          class="w-full py-3 ml-2 text-sm text-neutral-200 hover:cursor-pointer"
+          class="w-full flex items-center py-3 ml-2 text-sm text-neutral-200 hover:cursor-pointer"
         >
           <input
             :id="fieldName"
@@ -18,9 +18,11 @@
             v-bind="field"
             :value="true"
             :checked="false"
-            class="w-4 h-4 bg-neutral-100 border-gray-300 rounded accent-orange-600 hover:cursor-pointer"
+            class="w-4 h-4 mr-2 bg-neutral-100 border-gray-300 rounded accent-orange-600 hover:cursor-pointer"
           />
-          {{ label }} {{ field }} {{ value }}
+          <span>
+            {{ label }}
+          </span>
         </label>
       </Field>
     </div>
