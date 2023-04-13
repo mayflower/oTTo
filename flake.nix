@@ -25,6 +25,7 @@
             pkgs.nodejs-18_x
             pkgs.buildpack
             pkgs.kubernetes-helm
+            pkgs.k9s
         ];
       };
       overlays.default = (final: prev: {
