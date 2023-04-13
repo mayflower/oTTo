@@ -1,0 +1,72 @@
+@startuml BusinessModels
+
+object event
+object day
+object room
+object timeslotSize
+object timeslot
+object session
+object style
+object sponsor
+
+event : name = "Name of the Event/Conference"
+event : description = "Description of the Event/Conference"
+event : location = "Location of the Event/Conference"
+event : details = "Markdown introduction of the Event/Conference"
+event : image = "Image of the Event/Conference"
+event : url = "URL of the Event/Conference"
+event : startDate = "Start Date of the Event/Conference"
+event : endDate = "End Date of the Event/Conference"
+event : style = style
+event : days = day[]
+event : timeslotSizes = timeslotSizes[]
+event : sponsors = sponsor[]
+
+sponsor : name = "Name of the sponsor"
+sponsor : image = "Logo of the sponsor"
+sponsor : url = "URL of the sponsor"
+
+day : date = "Date of the Day"
+day : note = "A note for special days"
+day : rooms = room[]
+
+room : name = "Name of the Room"
+room : timeslots = timeslot[]
+
+timeslotSize : size = integer
+timeslotSize : name = "Name of the Timeslot size (e.g. short break, lunch, middle size session, ...)"
+timeslotSize : timeslots = timeslot[]
+
+timeslot : size = timeslotSize
+timeslot : startDate = "Start Date of the Timeslot"
+timeslot : endDate = "End Date of the Timeslot"
+timeslot : room = room
+timeslot : isBlocking = "Bool if session don't allow parallel sessions"
+timeslot : isBreak = "This session is for all rooms like lunch breaks"
+timeslot : isNoBlockingBreak = "This session is for all rooms but more as overlay like coffee break"
+
+session : title = "Title of the Session"
+session : description = "Description of the Session"
+session : speakers = "Speakers of the Session"
+session : timeslot = timeslot
+
+style : name = "Name of the Style"
+style : description = "Description of the Style"
+style : color = "Color of the Style"
+style : textColor = "Text Color of the Style"
+style : events = event[]
+style : image = "Image of the Style"
+
+event --> day
+event --> style
+event --* timeslotSize
+event --> session
+event --> sponsor
+
+day --> room
+
+room --> timeslot
+timeslot <-- session
+timeslot --* timeslotSize
+
+@enduml
