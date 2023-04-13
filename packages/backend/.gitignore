@@ -3,3 +3,4 @@ target/
 !**/src/test/**/target/
 
 
+bin

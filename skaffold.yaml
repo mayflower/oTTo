@@ -1,0 +1,33 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+metadata:
+  name: otto
+build:
+  artifacts:
+  - image: backend
+    context: .
+    jib:
+      project: packages/backend
+      type: maven
+deploy:
+  helm:
+    releases:
+      - name: backend
+        namespace: 'otto'
+        createNamespace: true
+        chartPath: 'helm/otto'
+        valuesFiles:
+          - helm/otto/values.yaml
+        version: 0.1.0
+      - name: db
+        namespace: 'otto'
+        createNamespace: true
+        remoteChart: 'postgresql'
+        repo: 'https://charts.bitnami.com/bitnami'
+        valuesFiles:
+          - "helm/dev-db-config.yaml"
+portForward:
+  - resourceType: Service
+    resourceName: backend-otto
+    namespace: otto
+    port: 8080

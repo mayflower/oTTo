@@ -1,0 +1,6 @@
+apiVersion: v2
+name: otto
+description: "oTTo (openspace Time Table organizer) is an open source service for managing open spaces such as barcamps in which participants can add and move sessions during the event and the time table is adjusted  in real time. It uses Vue, Spring Boot with Kotlin and Postgresql. For now, this chart only helps setting up a local dev environment and is not intended to be used in production."
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
