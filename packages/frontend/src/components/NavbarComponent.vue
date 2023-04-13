@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-neutral-800 border-b-1 border-neutral-600 z-20">
+  <div v-click-outside="closeNav" class="relative bg-neutral-800 border-b-1 border-neutral-600 z-20">
     <nav class="h-16">
       <div class="container mx-auto px-6 pt-4 flex items-center justify-between pb-4">
         <router-link
@@ -16,22 +16,25 @@
         </a>
       </div>
       <!-- Change max-height when adding new menu points -->
-      <div class=" bg-neutral-800">
-        <ul
-        :class="showMenu ? 'max-h-40 pb-1' : 'max-h-0'"
-        class="container mx-auto px-6 flex flex-col items-center transition-max-height duration-300 overflow-hidden"
+      <div
+        class="bg-neutral-800"
+        :class="showMenu ? ' border-b-2 border-neutral-600' : ''"
       >
-        <router-link
-          active-class="font-bold text-orange-400"
-          :to="`${item.route}`"
-          @click="toggleNav"
-          class="text-neutral-100 hover:text-orange-400 py-2.5 cursor-pointer text-center block w-full border-t border-neutral-700 transition duration-0 hover:duration-300"
-          v-for="item in menuItems"
-          :key="item.name"
+        <ul
+          :class="showMenu ? 'max-h-40 pb-1' : 'max-h-0'"
+          class="container mx-auto px-6 flex flex-col items-center transition-max-height duration-300 overflow-hidden"
         >
-          {{ item.name }}
-        </router-link>
-      </ul>
+          <router-link
+            active-class="font-bold text-orange-400"
+            :to="`${item.route}`"
+            @click="toggleNav"
+            class="text-neutral-100 hover:text-orange-400 py-2.5 cursor-pointer text-center block w-full border-t border-neutral-700 transition duration-0 hover:duration-300"
+            v-for="item in menuItems"
+            :key="item.name"
+          >
+            {{ item.name }}
+          </router-link>
+        </ul>
       </div>
     </nav>
   </div>
@@ -53,4 +56,6 @@ let menuItems = [
 ]
 let showMenu = ref(false)
 const toggleNav = () => (showMenu.value = !showMenu.value)
+const closeNav = () => (showMenu.value = false)
+
 </script>
