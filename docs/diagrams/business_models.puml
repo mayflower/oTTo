@@ -41,6 +41,9 @@ timeslot : size = timeslotSize
 timeslot : startDate = "Start Date of the Timeslot"
 timeslot : endDate = "End Date of the Timeslot"
 timeslot : room = room
+timeslot : isBlocking = "Bool if session don't allow parallel sessions"
+timeslot : isBreak = "This session is for all rooms like lunch breaks"
+timeslot : isNoBlockingBreak = "This session is for all rooms but more as overlay like coffee break"
 
 session : title = "Title of the Session"
 session : description = "Description of the Session"
