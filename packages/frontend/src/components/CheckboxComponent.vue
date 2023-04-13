@@ -21,7 +21,7 @@
             class="w-4 h-4 mr-2 bg-neutral-100 border-gray-300 rounded accent-orange-600 hover:cursor-pointer"
           />
           <span>
-            {{ label }}
+            {{ labelText }}
           </span>
         </label>
       </Field>
@@ -32,5 +32,5 @@
 <script setup lang="ts">
 import { Field } from 'vee-validate'
 
-defineProps(['label', 'fieldName'])
+defineProps(['labelText', 'fieldName'])
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full md:w-1/2 px-3 pb-6 md:mb-0">
     <label class="block uppercase tracking-wide text-neutral-200 text-xs font-bold mb-2">
-      {{ label }}
+      {{ labelText }}
     </label>
     <Field :name="fieldName" v-slot="{ field, errors }">
       <input
@@ -26,5 +26,5 @@
 <script setup lang="ts">
 import { Field, ErrorMessage } from 'vee-validate'
 
-defineProps(['label', 'fieldName', 'inputType'])
+defineProps(['labelText', 'fieldName', 'inputType'])
 </script>
