@@ -9,6 +9,11 @@ build:
     jib:
       project: packages/backend
       type: maven
+  - image: frontend
+    context: .
+    docker:
+      dockerfile: packages/frontend
+
 deploy:
   helm:
     releases:
@@ -26,6 +31,7 @@ deploy:
         repo: 'https://charts.bitnami.com/bitnami'
         valuesFiles:
           - "helm/dev-db-config.yaml"
+        version: 15.2.0
 portForward:
   - resourceType: Service
     resourceName: backend-otto
