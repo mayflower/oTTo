@@ -12,7 +12,7 @@ build:
   - image: frontend
     context: .
     docker:
-      dockerfile: packages/frontend
+      dockerfile: packages/frontend/Dockerfile
 
 deploy:
   helm:
