@@ -65,6 +65,14 @@ service:
   type: ClusterIP
   port: 8080
 
+frontend:
+  service:
+    port: 80
+  replicaCount: 1
+  image: 
+    repository: frontend
+    pullPolicy: IfNotPresent
+
 ingress:
   enabled: false
   className: ""
