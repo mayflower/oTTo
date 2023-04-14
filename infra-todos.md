@@ -20,4 +20,3 @@ skaffold-zeug:
 - Warum funktionieren probes nicht?
 - liquibase in initcontainer
 - https://redhat-scholars.github.io/spring-boot-k8s-tutorial/spring-boot-tutorial/03-kubernetes.html
-
