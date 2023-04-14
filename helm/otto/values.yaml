@@ -22,7 +22,7 @@ global:
 replicaCount: 1
 
 image:
-  repository: backend
+  repository: ghcr.io/mayflower/otto-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   # tag: ""
@@ -70,7 +70,7 @@ frontend:
     port: 80
   replicaCount: 1
   image: 
-    repository: frontend
+    repository: ghcr.io/mayflower/otto-frontend
     pullPolicy: IfNotPresent
 
 ingress:

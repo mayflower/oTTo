@@ -4,12 +4,12 @@ metadata:
   name: otto
 build:
   artifacts:
-  - image: backend
+  - image: ghcr.io/mayflower/otto-backend
     context: .
     jib:
       project: packages/backend
       type: maven
-  - image: frontend
+  - image: ghcr.io/mayflower/otto-frontend
     context: .
     docker:
       dockerfile: packages/frontend/Dockerfile
