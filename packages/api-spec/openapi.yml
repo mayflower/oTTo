@@ -41,6 +41,205 @@ components:
           readOnly: true
           nullable: false
           example: "this could be done in order to resolve the error"
+    event:
+      title: "Event"
+      description: "event data transfer object"
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - location
+        - details
+        - url
+        - start
+        - end
+        - days
+        - timeslotSizes
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
+        name:
+          title: "Name"
+          description: "name of the event"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "JSConf Berlin"
+        description:
+          title: "Description"
+          description: "brief event-description"
+          type: string
+          maxLength: 256
+          example: "Yearly event for JavaScript in Germany"
+        location:
+          title: "Location"
+          description: "location of the event"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "Messe-Berlin"
+        details:
+          title: "Details"
+          description: "details about this event"
+          type: string
+          nullable: false
+          example: "..."
+        image:
+          title: "Image"
+          description: "link to the image of this event"
+          type: string
+          nullable: true
+          format: uri
+          example: "https://www.example.com/assets/example.jpeg"
+        url:
+          title: "URL"
+          description: "link to the official website of this event"
+          type: string
+          nullable: false
+          format: uri
+          example: "https://www.example.com/"
+        start:
+          title: "Start"
+          description: "start timestamp of the event"
+          type: integer
+          nullable: false
+          example: 1679107234
+        end:
+          title: "End"
+          description: "end timestamp of the event"
+          type: integer
+          nullable: false
+          example: 1679108234
+        style:
+          title: "Style"
+          description: "style properties of the event"
+          $ref: '#/components/schemas/style'
+          nullable: true
+        days:
+          title: "Days"
+          description: "list of days of the event"
+          type: array
+          items:
+            $ref: '#/components/schemas/day'
+          nullable: false
+        timeslotSizes:
+          title: "Timeslot sizes"
+          description: "list of timeslot sizes of the event"
+          type: array
+          items:
+            $ref: '#/components/schemas/timeslotSize'
+          nullable: false
+        sponsors:
+          title: "Sponsors"
+          description: "list of sponsors of the event"
+          type: array
+          items:
+            $ref: '#/components/schemas/sponsor'
+          nullable: true
+    style:
+      title: "Style"
+      description: "style properties of an event"
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - color
+        - textColor
+        - events
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
+        name:
+          title: "Name"
+          description: "name of the style"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "..."
+        description:
+          title: "Description"
+          description: "Description of the Style"
+          type: string
+          maxLength: 256
+          example: "Yearly event for JavaScript in Germany"
+        color:
+          title: "Color"
+          description: "Hex Color of the style"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "#AF1234"
+        textColor:
+          title: "Text color"
+          description: "Text color of the style"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "#AF1234"
+        events:
+          title: "Events"
+          description: "list of the events this style is used"
+          type: array
+          nullable: false
+          items:
+            type: number
+        image:
+          title: "Image"
+          description: "link to the image of this style"
+          type: string
+          nullable: true
+          format: uri
+          example: "https://www.example.com/assets/example.jpeg"
+    sponsor:
+      title: "Sponsor"
+      description: "sponsor for an event"
+      type: object
+      required:
+        - id
+        - name
+        - url
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
+        name:
+          title: "Name"
+          description: "name of the sponsor"
+          type: string
+          nullable: false
+          maxLength: 128
+          example: "..."
+        image:
+          title: "Image"
+          description: "link to the image of this sponsor"
+          type: string
+          nullable: true
+          format: uri
+          example: "https://www.example.com/assets/example.jpeg"
+        url:
+          title: "URL"
+          description: "link to the official website of this sponsor"
+          type: string
+          nullable: false
+          format: uri
+          example: "https://www.example.com/"
+
     room:
       title: "Room"
       description: "room data transfer object"
