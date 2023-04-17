@@ -1,0 +1,49 @@
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+get:
+  operationId: getEventById
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/event.yml'
+put:
+  operationId: changeEventById
+  requestBody:
+    description: event to update
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/event.yml'
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '201':
+      description: Successfully updated
+delete:
+  operationId: deleteEventById
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '204':
+      description: Successfully deleted
