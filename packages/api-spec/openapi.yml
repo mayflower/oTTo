@@ -56,6 +56,7 @@ components:
         - end
         - days
         - timeslotSizes
+        - sessions
       properties:
         id:
           title: "ID"
@@ -134,6 +135,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/timeslotSize'
+          nullable: false
+        sessions:
+          title: "Sessions"
+          description: "list of sessions within room"
+          type: array
+          items:
+            $ref: '#/components/schemas/session'
           nullable: false
         sponsors:
           title: "Sponsors"
@@ -283,6 +291,7 @@ components:
       required:
         - id
         - name
+        - timeslots
       properties:
         id:
           title: "ID"
@@ -297,12 +306,12 @@ components:
           type: string
           nullable: false
           example: "Nice Room"
-        sessions:
-          title: "Sessions"
-          description: "list of sessions within room"
+        timeslots:
+          title: "Timeslots"
+          description: "list of timeslots for this event"
           type: array
           items:
-            $ref: '#/components/schemas/session'
+            $ref: '#/components/schemas/timeslot'
           nullable: false
     session:
       title: "Session"
@@ -310,9 +319,10 @@ components:
       type: object
       required:
         - id
-        - name
-        - start
-        - end
+        - roomId
+        - title
+        - speaker
+        - timeslot
       properties:
         id:
           title: "ID"
@@ -328,9 +338,9 @@ components:
           readOnly: true
           nullable: false
           example: 1
-        name:
-          title: "Name"
-          description: "name of the session"
+        title:
+          title: "Title"
+          description: "title of the session"
           type: string
           nullable: false
           maxLength: 128
@@ -341,27 +351,105 @@ components:
           type: string
           maxLength: 256
           example: "This is a Kubernetes Session for Beginners. Only for Entry Levels."
-        abstract:
-          title: "Abstract"
-          description: "abstract for this session"
+        timeslot:
+          title: "Timeslot"
+          description: "timeslot of the session"
           type: string
           nullable: false
-          minLength: 256
-          maxLength: 1024
-          example: "..."
-        start:
-          title: "Start"
-          description: "start timestamp of the session"
-          type: integer
+          example: "long timeslot"
+        speaker:
+          title: "Speaker"
+          description: "speaker of the session"
+          type: string
           nullable: false
-          example: 1679107234
-        end:
-          title: "End"
-          description: "end timestamp of the session"
-          type: integer
+          example: "Max Mustermann"
+    timeslot:
+      title: "Timeslot"
+      description: "timeslot data transfer object"
+      type: object
+      required:
+        - id
+        - size
+        - startDate
+        - endDate
+        - roomId
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: number
+          readOnly: true
           nullable: false
-          example: 1679108234
-
+          example: 1
+        roomId:
+          title: "RoomID"
+          description: "reference to the room"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
+        size:
+          title: "Size"
+          description: "size of the session"
+          type: array
+          nullable: false
+          items:
+            $ref: '#/components/schemas/timeslotSize'
+        startDate:
+          title: "StartDate"
+          description: "startDate of the timeslot"
+          type: string
+          format: date
+          nullable: false
+          maxLength: 128
+          example: "2023-12-24"
+        endDate:
+          title: "EndDate"
+          description: "endDate of the timeslot"
+          type: string
+          format: date
+          nullable: false
+          maxLength: 128
+          example: "2023-12-26"
+        isBlocking:
+          title: "isBlocking"
+          description: "Session don't allow parallel sessions"
+          type: bool
+          nullable: false
+        isBreak:
+          title: "isBreak"
+          description: "this session is for all rooms, like lunch breaks"
+          type: bool
+          nullable: false
+    timeslotSize:
+      title: "TimeslotSize"
+      description: "timeslotSize data transfer object"
+      type: object
+      required:
+        - id
+        - size
+        - name
+        - timeslots
+      properties:
+        id:
+          title: "ID"
+          description: "generated unique identifier"
+          type: number
+          readOnly: true
+          nullable: false
+          example: 1
+        size:
+          title: "Size"
+          description: "size of the session"
+          type: number
+          nullable: false
+        timeslots:
+          title: "Timeslots"
+          description: "timeslots with this size"
+          type: array
+          nullable: false
+          items:
+            $ref: '#/components/schemas/timeslot'
 paths:
   /rooms:
     get:
