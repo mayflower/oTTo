@@ -451,6 +451,45 @@ components:
           items:
             $ref: '#/components/schemas/timeslot'
 paths:
+  /events:
+    get:
+      operationId: getEvents
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          '200':
+            description: List of events
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/events'
+    post:
+      operationId: createEvent
+      requestBody:
+        description: event to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/event'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully created response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
   /rooms:
     get:
       operationId: getRooms
@@ -490,7 +529,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/room'
-
+  /events/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getEventById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
+    put:
+      operationId: changeEventById
+      requestBody:
+        description: event to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/event'
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '201':
+          description: Successfully updated
+    delete:
+      operationId: deleteEventById
+      responses:
+        default:
+          description: error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '204':
+          description: Successfully deleted
   /rooms/{id}:
     parameters:
       - name: id
@@ -541,7 +629,6 @@ paths:
                 $ref: '#/components/schemas/error'
         '204':
           description: Successfully deleted
-
   /sessions:
     get:
       operationId: getSessions
