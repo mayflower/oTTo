@@ -1,0 +1,136 @@
+@startuml DatabaseModels
+
+hide circle
+
+skinparam linetype ortho
+
+entity "Event" as e {
+    + id: ulid
+    + name: string
+    + description: string
+    + location: string
+    + startDate: date
+    + endDate: date
+    + style_id: ulid
+    + day_ids: ulid[]
+    + sponsor_ids: ulid[]
+    + session_ids: ulid[]
+    + timeslotSize_ids: ulid[]
+    --
+    url: string
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "style" as s {
+    + id: ulid
+    + name: string
+    + description: string
+    + color: string
+    + textColor: string
+    + image: string
+    + event_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "day" as d {
+    + id: ulid
+    + date: date
+    + note: string
+    + event_id: ulid
+    + room_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "room" as r {
+    + id: ulid
+    + name: string
+    + description: string
+    + day_ids: ulid[]
+    + timeslot_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "timeslot" as t {
+    + id: ulid
+    + start: time
+    + end: time
+    + room_id: ulid
+    + session_ids: ulid[]
+    + isBreak: boolean
+    + isBlocking: boolean
+    + isNoBlockingBreak: boolean
+    + timeslotSize_id: ulid
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "timeslotSize" as ts {
+    + id: ulid
+    + name: string
+    + minutes: number
+    + timeslot_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "sponsor" as sp {
+    + id: ulid
+    + title: string
+    + description: string
+    + speaker_ids: ulid[]
+    + event_id: ulid
+    timeslot: ulid
+    + url: string
+    + image: string
+    + event_id: ulid
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "session" as se {
+    + id: ulid
+    + name: string
+    + description: string
+    + timeslot_ids: ulid[]
+    + event_id: ulid
+    + speaker_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+entity "speaker" as spk {
+    + id: ulid
+    + name: string
+    + description: string
+    + url: string
+    + image: string
+    + session_ids: ulid[]
+    --
+    + created_at: timestamp
+    + updated_at: timestamp
+}
+
+e }o--|| s
+e ||--|{ d
+r }|--|{ d
+r ||--|{ t
+t }o--|| ts
+e ||--|{ sp
+e }|--|{ ts
+e ||--|{ se
+se ||--|{ spk
+se |o--|| t
+
+@enduml
