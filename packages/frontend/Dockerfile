@@ -28,7 +28,7 @@ COPY packages/frontend ./
 RUN npm run build
 
 
-FROM nginx:latest as webserver_prod
+FROM nginx:1.22-alpine as webserver_prod
 
 COPY --from=frontend_builder_prod /app/dist /usr/share/nginx/html
 EXPOSE 80
