@@ -9,20 +9,25 @@ import org.hibernate.annotations.GenericGenerator
 class Style(
     @NotNull
     @NotBlank
-    val name: String,
+    var name: String,
 
     @NotNull
-    val description: String,
-
-    @NotNull
-    @NotBlank
-    val color: String,
+    var description: String,
 
     @NotNull
     @NotBlank
-    val textColor: String,
+    var color: String,
 
-    val image: String,
+    @NotNull
+    @NotBlank
+    var textColor: String,
+
+    var image: String,
+
+    @OneToMany(
+        mappedBy = "event",
+        cascade = [CascadeType.ALL])
+    var events: MutableSet<EventEntity> = mutableSetOf(),
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")

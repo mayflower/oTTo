@@ -10,19 +10,44 @@ import java.util.Date
 class EventEntity(
     @NotNull
     @NotBlank
-    val name: String,
+    var name: String,
 
     @NotNull
-    val description: String,
+    var description: String,
 
     @NotNull
-    val location: String,
+    var location: String,
 
     @NotNull
-    val startDate: Date,
+    var startDate: Date,
 
     @NotNull
-    val endDate: Date
+    var endDate: Date,
+
+    var url: String,
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var style: Style = Style(),
+
+    /*@OneToMany(
+        mappedBy = "event",
+        cascade = [CascadeType.ALL])
+    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),*//*
+
+    */@OneToMany(
+        mappedBy = "event",
+        cascade = [CascadeType.ALL])
+    var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
+
+    @OneToMany(
+        mappedBy = "event",
+        cascade = [CascadeType.ALL])
+    var sessions: MutableSet<SessionEntity> = mutableSetOf(),
+
+    /*@OneToMany(
+        mappedBy = "event",
+        cascade = [CascadeType.ALL])
+    var timeSlotSizes: MutableSet<TimeSlotSizeEntity> = mutableSetOf<TimeSlotSizeEntity>(),*/
 
 ) {
     @Id
@@ -30,5 +55,6 @@ class EventEntity(
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String(), String(), Date(), Date())
+    constructor() : this(String(), String(), String(), Date(), Date(), String())
+
 }

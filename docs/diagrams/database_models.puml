@@ -87,9 +87,6 @@ entity "sponsor" as sp {
     + id: ulid
     + title: string
     + description: string
-    + speaker_ids: ulid[]
-    + event_id: ulid
-    timeslot: ulid
     + url: string
     + image: string
     + event_id: ulid
