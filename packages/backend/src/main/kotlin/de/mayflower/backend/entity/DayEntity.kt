@@ -17,11 +17,7 @@ class DayEntity(
     @ManyToOne(cascade = [CascadeType.ALL])
     val event: EventEntity = EventEntity(),
 
-    @OneToMany(
-        mappedBy = "day",
-        cascade = [CascadeType.ALL]
-    )
-    @JoinColumn(name = "id", nullable = false)
+    @ManyToMany(cascade = [CascadeType.ALL])
     val rooms: MutableSet<RoomEntity> = mutableSetOf()
 ) {
     @Id
@@ -29,5 +25,5 @@ class DayEntity(
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(Date(), String(), EventEntity(), mutableSetOf<RoomEntity>())
+    constructor() : this(Date(), String())
 }

@@ -12,15 +12,15 @@ class RoomEntity(
 
     var description: String,
 
-    /*@OneToMany(
-    mappedBy = "room",
+    @ManyToMany(
+    //mappedBy = "room",
     cascade = [CascadeType.ALL])
-    val days: MutableSet<DayEntity> = mutableSetOf()*/
+    val days: MutableSet<DayEntity> = mutableSetOf(),
 
-    /*@OneToMany(
+    @OneToMany(
     mappedBy = "room",
     cascade = [CascadeType.ALL])
-    val timeslots: MutableSet<TimeslotEntity> = mutableSetOf()*/
+    val timeslots: MutableSet<TimeslotEntity> = mutableSetOf()
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")

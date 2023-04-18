@@ -19,7 +19,6 @@ class TimeslotSizeEntity(
         mappedBy = "timeslotSize",
         cascade = [CascadeType.ALL]
     )
-    @JoinColumn(name = "id", nullable = false)
     val timeslots: MutableSet<TimeslotEntity> = mutableSetOf()
 ) {
     @Id

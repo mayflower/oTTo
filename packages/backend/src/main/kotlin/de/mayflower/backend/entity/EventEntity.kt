@@ -29,13 +29,13 @@ class EventEntity(
     @ManyToOne(cascade = [CascadeType.ALL])
     var style: Style = Style(),
 
-    /*@OneToMany(
-        mappedBy = "event",
+    @OneToMany(
+        //mappedBy = "event",
         cascade = [CascadeType.ALL])
-    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),*//*
+    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
 
-    */@OneToMany(
-        mappedBy = "event",
+    @OneToMany(
+        //mappedBy = "event",
         cascade = [CascadeType.ALL])
     var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
 
@@ -44,10 +44,10 @@ class EventEntity(
         cascade = [CascadeType.ALL])
     var sessions: MutableSet<SessionEntity> = mutableSetOf(),
 
-    /*@OneToMany(
-        mappedBy = "event",
+    @OneToMany(
+        //mappedBy = "event",
         cascade = [CascadeType.ALL])
-    var timeSlotSizes: MutableSet<TimeSlotSizeEntity> = mutableSetOf<TimeSlotSizeEntity>(),*/
+    var timeSlotSizes: MutableSet<TimeslotSizeEntity> = mutableSetOf(),
 
 ) {
     @Id

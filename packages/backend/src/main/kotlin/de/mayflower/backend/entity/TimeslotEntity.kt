@@ -1,14 +1,10 @@
 package de.mayflower.backend.entity
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Boolean
-import io.azam.ulidj.ULID
 import jakarta.persistence.*
-import jakarta.validation.constraints.*
+import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.GenericGenerator
-import org.hibernate.validator.constraints.UUID
 import java.sql.Time
 import java.time.LocalTime
-import java.util.Date
 
 @Entity
 @Table(name = "timeslot")
@@ -22,12 +18,11 @@ class TimeslotEntity(
     @ManyToOne(cascade = [CascadeType.ALL])
     val room: RoomEntity = RoomEntity(),
 
-    @OneToMany(
-        mappedBy = "timeslot",
+    @ManyToOne(
+        //mappedBy = "timeslot",
         cascade = [CascadeType.ALL]
     )
-    @JoinColumn(name = "id", nullable = false)
-    val sessions: MutableSet<SessionEntity> = mutableSetOf(),
+    val session: SessionEntity = SessionEntity(),
 
     @NotNull
     val isBreak: Boolean,
@@ -50,7 +45,7 @@ class TimeslotEntity(
         Time.valueOf(LocalTime.now()),
         Time.valueOf(LocalTime.now()),
         RoomEntity(),
-        mutableSetOf(),
+        SessionEntity(),
         false,
         false,
         false,
