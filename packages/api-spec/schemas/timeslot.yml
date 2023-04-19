@@ -48,10 +48,10 @@ properties:
   isBlocking:
     title: "isBlocking"
     description: "Session don't allow parallel sessions"
-    type: bool
+    type: boolean
     nullable: false
   isBreak:
     title: "isBreak"
     description: "this session is for all rooms, like lunch breaks"
-    type: bool
+    type: boolean
     nullable: false
