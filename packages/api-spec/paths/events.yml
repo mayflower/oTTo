@@ -1,39 +1,38 @@
-/events:
-  get:
-    operationId: getEvents
-    responses:
-      default:
-        description: error occurred
-        content:
-          application/json:
-            schema:
-              $ref: '../schemas/error.yml'
-        '200':
-          description: List of events
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '../schemas/event.yml'
-  post:
-    operationId: createEvent
-    requestBody:
-      description: event to create
+get:
+  operationId: getEvents
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '200':
+      description: List of events
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/event.yml'
+post:
+  operationId: createEvent
+  requestBody:
+    description: event to create
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/event.yml'
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '201':
+      description: Successfully created response
       content:
         application/json:
           schema:
             $ref: '../schemas/event.yml'
-    responses:
-      default:
-        description: error occurred
-        content:
-          application/json:
-            schema:
-              $ref: '../schemas/error.yml'
-      '201':
-        description: Successfully created response
-        content:
-          application/json:
-            schema:
-              $ref: '../schemas/event.yml'
