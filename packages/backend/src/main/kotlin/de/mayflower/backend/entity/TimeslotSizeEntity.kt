@@ -1,25 +1,24 @@
 package de.mayflower.backend.entity
 
 import jakarta.persistence.*
-import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.*
 import org.hibernate.annotations.GenericGenerator
+import org.hibernate.validator.constraints.UUID
+import java.util.Date
 
 @Entity
-@Table(name = "room")
-class RoomEntity(
+@Table(name = "timeslotSize")
+class TimeslotSizeEntity(
     @NotNull
-    var name: String,
+    val name: String,
 
-    var description: String,
-
-    @ManyToMany(
-    //mappedBy = "room",
-    cascade = [CascadeType.ALL])
-    val days: MutableSet<DayEntity> = mutableSetOf(),
+    @NotNull
+    val minutes: Number,
 
     @OneToMany(
-    mappedBy = "room",
-    cascade = [CascadeType.ALL])
+        mappedBy = "timeslotSize",
+        cascade = [CascadeType.ALL]
+    )
     val timeslots: MutableSet<TimeslotEntity> = mutableSetOf()
 ) {
     @Id
@@ -27,5 +26,5 @@ class RoomEntity(
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String())
+    constructor() : this(String(), 0, mutableSetOf())
 }

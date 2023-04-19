@@ -15,18 +15,17 @@ class SessionEntity(
     @NotNull
     var description: String,
 
-    /*@OneToMany(
+    @OneToMany(
         mappedBy = "session",
         cascade = [CascadeType.ALL])
-    var timeslots: MutableSet<TimeSlotEntity> = mutableSetOf(),*/
+    var timeslots: MutableSet<TimeslotEntity> = mutableSetOf(),
 
     @ManyToOne(cascade = [CascadeType.ALL])
     var event: EventEntity = EventEntity(),
 
-    /*@OneToMany(
-        mappedBy = "session",
+    @ManyToMany(
         cascade = [CascadeType.ALL])
-    var speakers: MutableSet<SpeakerEntity> = mutableSetOf(),*/
+    var speakers: MutableSet<SpeakerEntity> = mutableSetOf(),
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")

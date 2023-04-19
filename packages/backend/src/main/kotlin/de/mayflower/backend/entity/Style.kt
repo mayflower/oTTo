@@ -25,7 +25,7 @@ class Style(
     var image: String,
 
     @OneToMany(
-        mappedBy = "event",
+        //mappedBy = "event",
         cascade = [CascadeType.ALL])
     var events: MutableSet<EventEntity> = mutableSetOf(),
 ) {
