@@ -1,0 +1,36 @@
+title: "Day"
+description: "Day of the event"
+type: object
+required:
+  - id
+  - date
+  - rooms
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: number
+    readOnly: true
+    nullable: false
+    example: 1
+  date:
+    title: "Date"
+    description: "date of the Day"
+    type: string
+    format: date
+    nullable: false
+    maxLength: 128
+    example: "2023-12-24"
+  note:
+    title: "Note"
+    description: "note for special days"
+    type: string
+    nullable: true
+    example: "this is a special day"
+  rooms:
+    title: "Rooms"
+    description: "list of rooms for this day"
+    type: array
+    items:
+      $ref: 'room.yml'
+    nullable: false

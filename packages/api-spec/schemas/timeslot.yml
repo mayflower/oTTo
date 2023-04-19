@@ -1,0 +1,57 @@
+title: "Timeslot"
+description: "timeslot data transfer object"
+type: object
+required:
+  - id
+  - size
+  - startDate
+  - endDate
+  - roomId
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: number
+    readOnly: true
+    nullable: false
+    example: 1
+  roomId:
+    title: "RoomID"
+    description: "reference to the room"
+    type: number
+    readOnly: true
+    nullable: false
+    example: 1
+  size:
+    title: "Size"
+    description: "size of the session"
+    type: array
+    nullable: false
+    items:
+      $ref: 'timeslot-size.yml'
+  startDate:
+    title: "StartDate"
+    description: "startDate of the timeslot"
+    type: string
+    format: date
+    nullable: false
+    maxLength: 128
+    example: "2023-12-24"
+  endDate:
+    title: "EndDate"
+    description: "endDate of the timeslot"
+    type: string
+    format: date
+    nullable: false
+    maxLength: 128
+    example: "2023-12-26"
+  isBlocking:
+    title: "isBlocking"
+    description: "Session don't allow parallel sessions"
+    type: bool
+    nullable: false
+  isBreak:
+    title: "isBreak"
+    description: "this session is for all rooms, like lunch breaks"
+    type: bool
+    nullable: false
