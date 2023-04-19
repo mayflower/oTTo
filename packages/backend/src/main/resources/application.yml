@@ -9,7 +9,7 @@ spring:
   # jpa
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate.format_sql: true
   # liquibase

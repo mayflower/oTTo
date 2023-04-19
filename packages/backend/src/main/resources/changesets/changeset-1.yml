@@ -8,36 +8,36 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: char(128)
+                  type: varchar(128)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: name
-                  type: char(128)
+                  type: varchar(128)
         - createTable:
             tableName: session
             columns:
               - column:
                   name: id
-                  type: char(128)
+                  type: varchar(128)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: room_id
-                  type: char(128)
+                  type: varchar(128)
               - column:
                   name: name
-                  type: char(128)
+                  type: varchar(128)
                   constraints:
                     nullable: false
               - column:
                   name: description
-                  type: char(256)
+                  type: varchar(256)
               - column:
                   name: abstract
-                  type: char(1024)
+                  type: varchar(1024)
                   constraints:
                     nullable: false
               - column:
