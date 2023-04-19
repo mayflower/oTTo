@@ -32,4 +32,26 @@ class RoomController(private val roomRepository: RoomRepository) : RoomsControll
 
         return ResponseEntity(room, HttpStatus.CREATED)
     }
+
+    override fun changeRoomById(id: String, room: Room?): ResponseEntity<Unit> {
+
+        val roomEntity = this.roomRepository.findById(id)
+
+        if(room === null || roomEntity.isEmpty) {
+            return ResponseEntity(HttpStatus.BAD_REQUEST)
+        }
+
+
+        //val roomEntity = RoomEntity(room.name, "description")
+
+
+
+        return super.changeRoomById(id, room)
+    }
+
+    override fun deleteRoomById(id: String): ResponseEntity<Unit> {
+        this.roomRepository.deleteById(id)
+
+        return ResponseEntity(HttpStatus.NO_CONTENT)
+    }
 }
