@@ -1,0 +1,38 @@
+get:
+  operationId: getSessions
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '200':
+      description: list of sessions
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/session.yml'
+post:
+  operationId: createSession
+  requestBody:
+    description: session to create
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/session.yml'
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '201':
+      description: Successfully created response
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/session.yml'

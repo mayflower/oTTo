@@ -1,0 +1,28 @@
+title: "Error"
+description: "error data transfer object"
+type: object
+required:
+  - message
+  - code
+properties:
+  message:
+    title: "Message"
+    description: "error message/reason"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "error happened due to xyz"
+  code:
+    title: "Code"
+    description: "error code, can be used for error handling"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "ERR01"
+  resolution:
+    title: "Resolution"
+    description: "possible resolution"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "this could be done in order to resolve the error"
