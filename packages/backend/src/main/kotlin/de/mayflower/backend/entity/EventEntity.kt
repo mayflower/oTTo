@@ -1,8 +1,10 @@
 package de.mayflower.backend.entity
 
+import de.mayflower.backend.stubs.model.Event
 import jakarta.persistence.*
 import jakarta.validation.constraints.*
 import org.hibernate.annotations.GenericGenerator
+import java.net.URI
 import java.util.Date
 
 @Entity
@@ -16,18 +18,12 @@ class EventEntity(
     var description: String,
 
     @NotNull
+    var details: String,
+
+    @NotNull
     var location: String,
 
-    @NotNull
-    var startDate: Date,
-
-    @NotNull
-    var endDate: Date,
-
     var url: String,
-
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var style: Style = Style(),
 
     @OneToMany(
         //mappedBy = "event",
@@ -39,17 +35,20 @@ class EventEntity(
         cascade = [CascadeType.ALL])
     var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
 
-    @OneToMany(
-        mappedBy = "event",
-        cascade = [CascadeType.ALL])
-    var sessions: MutableSet<SessionEntity> = mutableSetOf(),
-
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String(), String(), Date(), Date(), String())
+    constructor() : this(String(), String(), String(), String(), String())
 
+    fun toDTO(): Event {
+        return Event(this.id, this.name, this.description, this.location, this.details, URI(this.url))
+    }
+    companion object {
+        fun fromDTO(event: Event): EventEntity {
+            return EventEntity(event.name, event.description, event.details, event.location, event.url.toString())
+        }
+    }
 }

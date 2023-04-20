@@ -31,11 +31,3 @@ paths:
     $ref: 'paths/events.yml'
   /events/{id}:
     $ref: 'paths/event-by-id.yml'
-  /rooms:
-    $ref: 'paths/rooms.yml'
-  /rooms/{id}:
-    $ref: 'paths/room-by-id.yml'
-  /sessions:
-    $ref: 'paths/sessions.yml'
-  /sessions/{id}:
-    $ref: 'paths/session-by-id.yml'

@@ -15,13 +15,6 @@ properties:
     readOnly: true
     nullable: false
     example: 1
-  roomId:
-    title: "RoomID"
-    description: "reference to the room"
-    type: number
-    readOnly: true
-    nullable: false
-    example: 1
   title:
     title: "Title"
     description: "title of the session"
@@ -38,9 +31,10 @@ properties:
   timeslot:
     title: "Timeslot"
     description: "timeslot of the session"
-    type: string
+    type: array
+    items:
+      $ref: 'timeslot.yml'
     nullable: false
-    example: "long timeslot"
   speaker:
     title: "Speaker"
     description: "speaker of the session"

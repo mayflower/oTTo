@@ -21,12 +21,6 @@ properties:
     nullable: false
     maxLength: 128
     example: "2023-12-24"
-  note:
-    title: "Note"
-    description: "note for special days"
-    type: string
-    nullable: true
-    example: "this is a special day"
   rooms:
     title: "Rooms"
     description: "list of rooms for this day"
