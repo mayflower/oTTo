@@ -4,6 +4,7 @@ import de.mayflower.backend.stubs.model.Event
 import jakarta.persistence.*
 import jakarta.validation.constraints.*
 import org.hibernate.annotations.GenericGenerator
+import org.springframework.data.jpa.repository.Modifying
 import java.net.URI
 import java.util.Date
 
@@ -25,15 +26,15 @@ class EventEntity(
 
     var url: String,
 
-    @OneToMany(
+        // @OneToMany(
         //mappedBy = "event",
-        cascade = [CascadeType.ALL])
-    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
+        //       cascade = [CascadeType.ALL])
+        //   var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
 
-    @OneToMany(
+        //  @OneToMany(
         //mappedBy = "event",
-        cascade = [CascadeType.ALL])
-    var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
+        //      cascade = [CascadeType.ALL])
+        //  var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
 
 ) {
     @Id

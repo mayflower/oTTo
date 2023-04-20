@@ -7,6 +7,7 @@ import de.mayflower.backend.repository.RoomRepository
 import de.mayflower.backend.stubs.api.EventsControllerDelegate
 import de.mayflower.backend.stubs.model.Event
 import de.mayflower.backend.stubs.model.Room
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
@@ -42,7 +43,7 @@ class EventsController(private val eventRepository: EventRepository) : EventsCon
     }
 
     override fun deleteEventById(id: String): ResponseEntity<Unit> {
-        val eventDatabaseEntity = this.eventRepository.deleteById(id)
+        this.eventRepository.deleteById(id)
 
         return ResponseEntity(HttpStatus.OK)
     }
