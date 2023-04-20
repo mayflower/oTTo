@@ -16,8 +16,8 @@ class SponsorEntity(
 
     var image: String,
 
-        //@ManyToOne(cascade = [CascadeType.ALL])
-        //var event: EventEntity = EventEntity(),
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var event: EventEntity = EventEntity(),
 
 ) {
     @Id

@@ -26,15 +26,16 @@ class EventEntity(
 
     var url: String,
 
-        // @OneToMany(
-        //mappedBy = "event",
-        //       cascade = [CascadeType.ALL])
-        //   var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
+    @OneToMany(mappedBy = "event",
+             // cascade = [CascadeType.ALL] // TODO: deleteById doesn'work with this line
+                )
+    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
 
-        //  @OneToMany(
-        //mappedBy = "event",
-        //      cascade = [CascadeType.ALL])
-        //  var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
+    @OneToMany(
+    mappedBy = "event",
+        //cascade = [CascadeType.ALL]
+    )
+    var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
 
 ) {
     @Id

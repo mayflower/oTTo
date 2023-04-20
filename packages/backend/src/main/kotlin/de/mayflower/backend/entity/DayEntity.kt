@@ -14,8 +14,8 @@ class DayEntity(
     @NotNull
     val note: String,
 
-        // @ManyToOne(cascade = [CascadeType.ALL])
-        // val event: EventEntity = EventEntity(),
+    @ManyToOne(cascade = [CascadeType.ALL])
+    val event: EventEntity = EventEntity(),
 
     @ManyToMany(cascade = [CascadeType.ALL])
     val rooms: MutableSet<RoomEntity> = mutableSetOf()
