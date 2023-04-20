@@ -44,11 +44,6 @@ class EventEntity(
         cascade = [CascadeType.ALL])
     var sessions: MutableSet<SessionEntity> = mutableSetOf(),
 
-    @OneToMany(
-        //mappedBy = "event",
-        cascade = [CascadeType.ALL])
-    var timeSlotSizes: MutableSet<TimeslotSizeEntity> = mutableSetOf(),
-
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")

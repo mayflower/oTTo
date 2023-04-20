@@ -32,9 +32,6 @@ class TimeslotEntity(
 
     @NotNull
     val isNoBlockingBreak: Boolean,
-
-    @ManyToOne(cascade = [CascadeType.ALL])
-    val timeslotSize: TimeslotSizeEntity = TimeslotSizeEntity()
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")
@@ -48,7 +45,6 @@ class TimeslotEntity(
         SessionEntity(),
         false,
         false,
-        false,
-        TimeslotSizeEntity()
+        false
     )
 }
