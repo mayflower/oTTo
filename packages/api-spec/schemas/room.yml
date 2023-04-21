@@ -12,7 +12,7 @@ properties:
     type: string
     readOnly: true
     nullable: false
-    example: 1
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
   name:
     title: "Name"
     description: "name of the room"

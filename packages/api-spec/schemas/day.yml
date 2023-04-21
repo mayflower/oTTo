@@ -4,15 +4,14 @@ type: object
 required:
   - id
   - date
-  - rooms
 properties:
   id:
     title: "ID"
     description: "generated unique identifier"
-    type: number
+    type: string
     readOnly: true
     nullable: false
-    example: 1
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
   date:
     title: "Date"
     description: "date of the Day"
@@ -21,6 +20,12 @@ properties:
     nullable: false
     maxLength: 128
     example: "2023-12-24"
+  note:
+    title: "Note"
+    description: "note for the Day"
+    type: string
+    nullable: true
+    example: "This is a note for the day"
   rooms:
     title: "Rooms"
     description: "list of rooms for this day"

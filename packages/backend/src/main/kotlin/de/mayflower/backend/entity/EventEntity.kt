@@ -4,9 +4,7 @@ import de.mayflower.backend.stubs.model.Event
 import jakarta.persistence.*
 import jakarta.validation.constraints.*
 import org.hibernate.annotations.GenericGenerator
-import org.springframework.data.jpa.repository.Modifying
 import java.net.URI
-import java.util.Date
 
 @Entity
 @Table(name = "event")
@@ -46,11 +44,24 @@ class EventEntity(
     constructor() : this(String(), String(), String(), String(), String())
 
     fun toDTO(): Event {
-        return Event(this.id, this.name, this.description, this.location, this.details, URI(this.url))
+        return Event(
+                this.id,
+                this.name,
+                this.description,
+                this.location,
+                this.details,
+                URI(this.url)
+        )
     }
     companion object {
         fun fromDTO(event: Event): EventEntity {
-            return EventEntity(event.name, event.description, event.details, event.location, event.url.toString())
+            return EventEntity(
+                    event.name,
+                    event.description,
+                    event.details,
+                    event.location,
+                    event.url.toString()
+            )
         }
     }
 }
