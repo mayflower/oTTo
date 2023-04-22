@@ -21,11 +21,13 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "date-fns": "^2.29.3",
     "pinia": "^2.0.32",
+    "rest-client": "file:./generated-sources/client",
     "simplebar": "^2.4.3",
     "swiper": "^9.1.1",
+    "vee-validate": "^4.8.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
-    "rest-client": "file:./generated-sources/client"
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.31.1",
