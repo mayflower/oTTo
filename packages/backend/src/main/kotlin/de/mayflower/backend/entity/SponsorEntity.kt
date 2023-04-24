@@ -5,27 +5,25 @@ import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.GenericGenerator
 
 @Entity
-@Table(name = "room")
-class RoomEntity(
+@Table(name = "sponsor")
+class SponsorEntity(
     @NotNull
-    var name: String,
+    var title: String,
 
     var description: String,
 
-    @ManyToMany(
-    //mappedBy = "room",
-    cascade = [CascadeType.ALL])
-    val days: MutableSet<DayEntity> = mutableSetOf(),
+    var url: String,
 
-    @OneToMany(
-    mappedBy = "room",
-    cascade = [CascadeType.ALL])
-    val timeslots: MutableSet<TimeslotEntity> = mutableSetOf()
+    var image: String,
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var event: EventEntity = EventEntity(),
+
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String())
+    constructor() : this(String(), String(), String(), String())
 }

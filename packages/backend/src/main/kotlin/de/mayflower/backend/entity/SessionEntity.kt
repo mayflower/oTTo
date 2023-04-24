@@ -13,24 +13,24 @@ class SessionEntity(
     var name: String,
 
     @NotNull
-    @NotBlank
-    var abstract: String,
+    var description: String,
 
-    @NotNull
-    var start_timestamp: Long,
-
-    @NotNull
-    var end_timestamp: Long,
+    @OneToMany(
+        mappedBy = "session",
+        cascade = [CascadeType.ALL])
+    var timeslots: MutableSet<TimeslotEntity> = mutableSetOf(),
 
     @ManyToOne(cascade = [CascadeType.ALL])
-    var room: RoomEntity = RoomEntity(),
+    var event: EventEntity = EventEntity(),
 
-    var description: String = String()
+    @ManyToMany(
+        cascade = [CascadeType.ALL])
+    var speakers: MutableSet<SpeakerEntity> = mutableSetOf(),
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String(), -1, -1)
+    constructor() : this(String(), String())
 }

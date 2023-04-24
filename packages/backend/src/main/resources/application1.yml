@@ -3,14 +3,16 @@
 spring:
   profiles:
     default: local
+  devtools.add-properties: false
   # database-connection
   datasource:
-    driver-class-name: org.h2.Driver
+    driver-class-name: org.postgresql.Driver
   # jpa
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.format_sql: true
   # liquibase
   liquibase:
@@ -21,11 +23,10 @@ spring:
 spring.config.activate.on-profile: local
 
 spring:
+  devtools.add-properties: true
   # database-connection
   datasource:
-    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
-    username: backend
-    password: backend
+    url: jdbc:postgresql://localhost:5432/otto
   liquibase.contexts: fixtures
 ---
 spring.config.activate.on-profile: docker
