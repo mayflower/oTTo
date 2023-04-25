@@ -1,23 +1,19 @@
 package de.mayflower.backend.entity
 
+import de.mayflower.backend.stubs.model.Room
+import de.mayflower.backend.stubs.model.Sponsor
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.GenericGenerator
+import java.net.URI
+import java.util.*
 
 @Entity
 @Table(name = "sponsor")
 class SponsorEntity(
-    @NotNull
-    var title: String,
-
-    var description: String,
-
-    var url: String,
-
-    var image: String,
-
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var event: EventEntity = EventEntity(),
+title: String,
+url: String,
+image: String,
 
 ) {
     @Id
@@ -25,5 +21,30 @@ class SponsorEntity(
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
-    constructor() : this(String(), String(), String(), String())
+    @NotNull
+    var title: String = title
+
+    var url: String = url
+
+    var image: String = image
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var event: EventEntity = EventEntity()
+
+    constructor() : this(String(), String(), String())
+
+    constructor(sponsor: Sponsor) : this(
+            sponsor.name,
+            sponsor.url.toString(),
+            sponsor.image.toString(),
+    )
+
+    fun asDto(): Sponsor {
+        return Sponsor(
+                this.id,
+                this.title,
+                URI(this.url),
+                URI(this.image),
+        )
+    }
 }
