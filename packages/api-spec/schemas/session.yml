@@ -37,7 +37,9 @@ properties:
     nullable: false
   speaker:
     title: "Speaker"
-    description: "speaker of the session"
-    type: string
+    description: "speaker list of the session"
+    type: array
+    items:
+      type: string
     nullable: false
-    example: "Max Mustermann"
+    example: ["Max Mustermann", "Rainer Zufall"]

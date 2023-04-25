@@ -22,7 +22,7 @@ class EventsService(private val eventRepository: EventRepository) : EventsContro
             return ResponseEntity(HttpStatus.BAD_REQUEST)
         }
 
-        val eventEntity = EventEntity.fromDto(event)
+        val eventEntity = EventEntity(event)
 
         val eventDatabaseEntity = this.eventRepository.save(eventEntity)
 
