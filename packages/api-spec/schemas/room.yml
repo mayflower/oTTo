@@ -19,6 +19,12 @@ properties:
     type: string
     nullable: false
     example: "Nice Room"
+  description:
+    title: "Description"
+    description: "description of the room"
+    type: string
+    nullable: true
+    example: "Nice Room description"
   timeslots:
     title: "Timeslots"
     description: "list of timeslots for this event"
