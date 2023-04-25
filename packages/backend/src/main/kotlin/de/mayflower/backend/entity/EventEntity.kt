@@ -9,41 +9,54 @@ import java.net.URI
 @Entity
 @Table(name = "event")
 class EventEntity(
-    @NotNull
-    @NotBlank
-    var name: String,
-
-    @NotNull
-    var description: String,
-
-    @NotNull
-    var details: String,
-
-    @NotNull
-    var location: String,
-
-    var url: String,
-
-    @OneToMany(mappedBy = "event",
-             // cascade = [CascadeType.ALL] // TODO: deleteById doesn'work with this line
-                )
-    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>(),
-
-    @OneToMany(
-    mappedBy = "event",
-        //cascade = [CascadeType.ALL]
-    )
-    var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>(),
-
+name: String,
+description: String,
+details: String,
+location: String,
+url: String
 ) {
     @Id
     @GenericGenerator(name = "ulid_generator", strategy = "de.mayflower.backend.helper.UlidGenerator")
     @GeneratedValue(generator = "ulid_generator")
     val id: String = String()
 
+    @NotNull
+    @NotBlank
+    var name: String = name
+
+    @NotNull
+    var description: String = description
+
+    @NotNull
+    var details: String = details
+
+    @NotNull
+    var location: String = location
+
+    var url: String = url
+
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY
+            // cascade = [CascadeType.ALL] // TODO: deleteById doesn'work with this line
+    )
+    var days: MutableSet<DayEntity> = mutableSetOf<DayEntity>()
+
+    @OneToMany(
+            mappedBy = "event",
+            //cascade = [CascadeType.ALL]
+    )
+    var sponsors: MutableSet<SponsorEntity> = mutableSetOf<SponsorEntity>()
+
     constructor() : this(String(), String(), String(), String(), String())
 
-    fun toDTO(): Event {
+    constructor(event: Event) : this(
+            event.name,
+            event.description,
+            event.details,
+            event.location,
+            event.url.toString(),
+            )
+
+    fun asDto(): Event {
         return Event(
                 this.id,
                 this.name,
@@ -52,16 +65,5 @@ class EventEntity(
                 this.details,
                 URI(this.url)
         )
-    }
-    companion object {
-        fun fromDTO(event: Event): EventEntity {
-            return EventEntity(
-                    event.name,
-                    event.description,
-                    event.details,
-                    event.location,
-                    event.url.toString()
-            )
-        }
     }
 }

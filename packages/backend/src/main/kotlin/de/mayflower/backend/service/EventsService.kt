@@ -1,27 +1,32 @@
-package de.mayflower.backend.controller
+package de.mayflower.backend.service
 
+import de.mayflower.backend.entity.DayEntity
 import de.mayflower.backend.entity.EventEntity
+import de.mayflower.backend.entity.RoomEntity
+import de.mayflower.backend.entity.SponsorEntity
 import de.mayflower.backend.repository.EventRepository
 import de.mayflower.backend.stubs.api.EventsControllerDelegate
+import de.mayflower.backend.stubs.model.Day
 import de.mayflower.backend.stubs.model.Event
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
+import java.time.ZoneId
 import java.util.*
 
-@Component("roomsControllerDelegate")
-class EventsController(private val eventRepository: EventRepository) : EventsControllerDelegate  {
+@Service("eventsControllerDelegate")
+class EventsService(private val eventRepository: EventRepository) : EventsControllerDelegate  {
 
     override fun createEvent(event: Event?): ResponseEntity<Event> {
         if(event === null) {
             return ResponseEntity(HttpStatus.BAD_REQUEST)
         }
 
-        val eventEntity = EventEntity.fromDTO(event)
+        val eventEntity = EventEntity.fromDto(event)
 
         val eventDatabaseEntity = this.eventRepository.save(eventEntity)
 
-        return ResponseEntity(eventDatabaseEntity.toDTO(), HttpStatus.CREATED)
+        return ResponseEntity(eventDatabaseEntity.asDto(), HttpStatus.CREATED)
     }
 
     override fun getEventById(id: String): ResponseEntity<Event> {
@@ -31,7 +36,7 @@ class EventsController(private val eventRepository: EventRepository) : EventsCon
             return ResponseEntity(HttpStatus.NOT_FOUND)
         }
 
-        val event = eventDatabaseEntity.get().toDTO()
+        val event = eventDatabaseEntity.get().asDto()
 
         return ResponseEntity(event, HttpStatus.OK)
     }
@@ -41,16 +46,18 @@ class EventsController(private val eventRepository: EventRepository) : EventsCon
             return ResponseEntity(HttpStatus.BAD_REQUEST)
         }
 
-        val eventDatabaseEntity = this.eventRepository.findById(id)
+        val days = mutableSetOf<DayEntity>()
 
-        eventDatabaseEntity.get().name = event.name
-        eventDatabaseEntity.get().description = event.description
-        eventDatabaseEntity.get().details = event.details
-        eventDatabaseEntity.get().location = event.location
-        eventDatabaseEntity.get().url = event.url.toString()
+        event.days?.forEach { day: Day ->
+            run {
+                val dayEntity = DayEntity(Date.from(day.date.atStartOfDay(ZoneId.systemDefault()).toInstant()), day.note.toString())
+                days += setOf<DayEntity>(dayEntity)
+            }
+        }
 
+        val eventDatabaseEntity = EventEntity(event.name, event.description, event.details, event.location, event.url.toString())
 
-        this.eventRepository.save(eventDatabaseEntity.get())
+        this.eventRepository.save(eventDatabaseEntity)
 
         return ResponseEntity(HttpStatus.OK)
     }
