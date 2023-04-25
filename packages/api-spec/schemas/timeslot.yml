@@ -42,5 +42,6 @@ properties:
   session:
     title: "Session"
     description: "Session for this timeslot"
+    type: object
     $ref: "session.yml"
     nullable: true
