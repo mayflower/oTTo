@@ -7,7 +7,6 @@ required:
   - description
   - color
   - textColor
-  - events
 properties:
   id:
     title: "ID"
