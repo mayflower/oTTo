@@ -18,7 +18,6 @@ properties:
     type: string
     format: date
     nullable: false
-    maxLength: 128
     example: "2023-12-24"
   note:
     title: "Note"

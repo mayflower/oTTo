@@ -26,6 +26,7 @@
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
         <liquibase.version>4.20.0</liquibase.version>
         <ulidj.version>1.0.0</ulidj.version>
+        <model-mapper.version>2.3.5</model-mapper.version>
 
         <!-- plugin version -->
         <plugins.openapi-generator.version>6.4.0</plugins.openapi-generator.version>
@@ -72,6 +73,13 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>jackson-databind-nullable</artifactId>
                 <version>${jackson-databind-nullable.version}</version>
+            </dependency>
+
+            <!-- model mapper -->
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${model-mapper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -144,6 +152,16 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
+        </dependency>
+
+        <!-- model mapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
         </dependency>
     </dependencies>
 
