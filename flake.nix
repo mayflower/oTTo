@@ -23,9 +23,9 @@
             pkgs.skaffold
             pkgs.openjdk_headless
             pkgs.nodejs-18_x
-            pkgs.buildpack
             pkgs.kubernetes-helm
             pkgs.k9s
+            pkgs.tilt
         ];
       };
       overlays.default = (final: prev: {

@@ -13,6 +13,5 @@
 
     <modules>
         <module>packages/backend</module>
-        <module>packages/frontend</module>
     </modules>
 </project>
