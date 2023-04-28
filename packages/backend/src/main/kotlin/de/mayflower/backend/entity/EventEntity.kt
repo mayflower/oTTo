@@ -48,6 +48,7 @@ url: String
 
     constructor() : this(String(), String(), String(), String(), String())
 
+    @Deprecated("inject ModelParser and use Modelparser.parse()")
     constructor(event: Event) : this(
             event.name,
             event.description,
@@ -56,6 +57,7 @@ url: String
             event.url.toString(),
             )
 
+    @Deprecated("inject ModelParser and use Modelparser.parse()")
     fun asDto(): Event {
         return Event(
                 this.id,

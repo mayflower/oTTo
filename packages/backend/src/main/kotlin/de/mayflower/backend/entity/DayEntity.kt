@@ -1,13 +1,11 @@
 package de.mayflower.backend.entity
 
 import de.mayflower.backend.stubs.model.Day
-import de.mayflower.backend.stubs.model.Event
 import jakarta.persistence.*
-import jakarta.validation.constraints.*
+import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.GenericGenerator
 import java.time.ZoneId
-import java.util.Date
-import java.util.Optional
+import java.util.*
 
 @Entity
 @Table(name = "day")
@@ -33,11 +31,13 @@ class DayEntity(
 
     constructor() : this(Date(), String())
 
+    @Deprecated("inject ModelParser and use Modelparser.parse()")
     constructor(day: Day) : this(
             Date.from(day.date.atStartOfDay(ZoneId.systemDefault()).toInstant()),
             day.note.toString()
     )
 
+    @Deprecated("inject ModelParser and use Modelparser.parse()")
     fun asDto(): Day {
         return Day(
                 this.id,
