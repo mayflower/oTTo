@@ -1,0 +1,34 @@
+title: "Room"
+description: "room data transfer object"
+type: object
+required:
+  - id
+  - name
+  - timeslots
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  name:
+    title: "Name"
+    description: "name of the room"
+    type: string
+    nullable: false
+    example: "Nice Room"
+  description:
+    title: "Description"
+    description: "description of the room"
+    type: string
+    nullable: true
+    example: "Nice Room description"
+  timeslots:
+    title: "Timeslots"
+    description: "list of timeslots for this event"
+    type: array
+    items:
+      $ref: 'timeslot.yml'
+    nullable: false

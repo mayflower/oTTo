@@ -1,0 +1,36 @@
+title: "Sponsor"
+description: "sponsor for an event"
+type: object
+required:
+  - id
+  - name
+  - url
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  name:
+    title: "Name"
+    description: "name of the sponsor"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "..."
+  image:
+    title: "Image"
+    description: "link to the image of this sponsor"
+    type: string
+    nullable: true
+    format: uri
+    example: "https://www.example.com/assets/example.jpeg"
+  url:
+    title: "URL"
+    description: "link to the official website of this sponsor"
+    type: string
+    nullable: false
+    format: uri
+    example: "https://www.example.com/"

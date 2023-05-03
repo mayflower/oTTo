@@ -1,0 +1,58 @@
+title: "Style"
+description: "style properties of an event"
+type: object
+required:
+  - id
+  - name
+  - description
+  - color
+  - textColor
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  name:
+    title: "Name"
+    description: "name of the style"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "..."
+  description:
+    title: "Description"
+    description: "Description of the Style"
+    type: string
+    maxLength: 256
+    example: "Yearly event for JavaScript in Germany"
+  color:
+    title: "Color"
+    description: "Hex Color of the style"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "#AF1234"
+  textColor:
+    title: "Text color"
+    description: "Text color of the style"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "#AF1234"
+  events:
+    title: "Events"
+    description: "list of the events this style is used"
+    type: array
+    nullable: false
+    items:
+      type: number
+  image:
+    title: "Image"
+    description: "link to the image of this style"
+    type: string
+    nullable: true
+    format: uri
+    example: "https://www.example.com/assets/example.jpeg"

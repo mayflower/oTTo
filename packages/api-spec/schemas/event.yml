@@ -1,0 +1,72 @@
+title: "Event"
+description: "event data transfer object"
+type: object
+required:
+  - id
+  - name
+  - description
+  - location
+  - details
+  - url
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  name:
+    title: "Name"
+    description: "name of the event"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "JSConf Berlin"
+  description:
+    title: "Description"
+    description: "brief event-description"
+    type: string
+    maxLength: 256
+    example: "Yearly event for JavaScript in Germany"
+  location:
+    title: "Location"
+    description: "location of the event"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "Messe-Berlin"
+  details:
+    title: "Details"
+    description: "details about this event"
+    type: string
+    nullable: false
+    example: "..."
+  image:
+    title: "Image"
+    description: "link to the image of this event"
+    type: string
+    nullable: true
+    format: uri
+    example: "https://www.example.com/assets/example.jpeg"
+  url:
+    title: "URL"
+    description: "link to the official website of this event"
+    type: string
+    nullable: false
+    format: uri
+    example: "https://www.example.com/"
+  days:
+    title: "Days"
+    description: "list of days of the event"
+    type: array
+    items:
+      $ref: 'day.yml'
+    nullable: true
+  sponsors:
+    title: "Sponsors"
+    description: "list of sponsors of the event"
+    type: array
+    items:
+      $ref: 'sponsor.yml'
+    nullable: true

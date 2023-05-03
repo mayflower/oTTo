@@ -1,0 +1,47 @@
+title: "Timeslot"
+description: "timeslot data transfer object"
+type: object
+required:
+  - id
+  - startDate
+  - endDate
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  startTime:
+    title: "Start time"
+    description: "star time of the timeslot"
+    type: string
+    patter: '^([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$'
+    nullable: false
+    maxLength: 128
+    example: "17:30"
+  endTime:
+    title: "End time"
+    description: "end time of the timeslot"
+    type: string
+    patter: '^([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$'
+    nullable: false
+    maxLength: 128
+    example: "18:30"
+  isBlocking:
+    title: "isBlocking"
+    description: "Session don't allow parallel sessions"
+    type: boolean
+    nullable: false
+  isBreak:
+    title: "isBreak"
+    description: "this session is for all rooms, like lunch breaks"
+    type: boolean
+    nullable: false
+  session:
+    title: "Session"
+    description: "Session for this timeslot"
+    type: object
+    $ref: "session.yml"
+    nullable: true

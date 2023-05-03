@@ -1,0 +1,49 @@
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+get:
+  operationId: getRoomById
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/room.yml'
+put:
+  operationId: changeRoomById
+  requestBody:
+    description: room to update
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/room.yml'
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '201':
+      description: Successfully updated
+delete:
+  operationId: deleteRoomById
+  responses:
+    default:
+      description: error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml'
+    '204':
+      description: Successfully deleted

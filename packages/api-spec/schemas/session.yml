@@ -1,0 +1,45 @@
+title: "Session"
+description: "session data transfer object"
+type: object
+required:
+  - id
+  - roomId
+  - title
+  - speaker
+  - timeslot
+properties:
+  id:
+    title: "ID"
+    description: "generated unique identifier"
+    type: string
+    readOnly: true
+    nullable: false
+    example: "01GYF7GERCYTZD1JDNX7S01ZZC"
+  title:
+    title: "Title"
+    description: "title of the session"
+    type: string
+    nullable: false
+    maxLength: 128
+    example: "Kubernetes for Beginner#1"
+  description:
+    title: "Description"
+    description: "brief session-description"
+    type: string
+    maxLength: 256
+    example: "This is a Kubernetes Session for Beginners. Only for Entry Levels."
+  timeslot:
+    title: "Timeslot"
+    description: "timeslot of the session"
+    type: array
+    items:
+      $ref: 'timeslot.yml'
+    nullable: false
+  speaker:
+    title: "Speaker"
+    description: "speaker list of the session"
+    type: array
+    items:
+      type: string
+    nullable: false
+    example: ["Max Mustermann", "Rainer Zufall"]
