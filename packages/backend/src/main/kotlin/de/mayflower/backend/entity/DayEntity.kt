@@ -27,7 +27,7 @@ class DayEntity(
     var event: EventEntity? = null
 
     @ManyToMany(cascade = [CascadeType.ALL])
-    val rooms: MutableSet<RoomEntity> = mutableSetOf()
+    var rooms: MutableSet<RoomEntity> = mutableSetOf()
 
     constructor() : this(Date(), String())
 

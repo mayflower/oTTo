@@ -1,6 +1,5 @@
 package de.mayflower.backend.entity
 
-import de.mayflower.backend.stubs.model.Room
 import de.mayflower.backend.stubs.model.Session
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank

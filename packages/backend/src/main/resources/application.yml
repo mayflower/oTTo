@@ -17,9 +17,17 @@ spring:
       hibernate.format_sql: true
   # liquibase
   liquibase:
-    enabled: true
+    enabled: false
     change-log: 'classpath:db-changelog.yml'
     drop-first: false
+custom:
+  model-matching-options:
+    day-matcher:
+      source: Day
+      target: DayEntity
+    dayEntity-matcher:
+      source: DayEntity
+      target: Day
 ---
 spring.config.activate.on-profile: local
 
