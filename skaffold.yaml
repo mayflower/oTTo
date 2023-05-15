@@ -4,15 +4,20 @@ metadata:
   name: otto
 build:
   artifacts:
-  - image: backend
+  - image: ghcr.io/mayflower/otto-backend
     context: .
     jib:
       project: packages/backend
       type: maven
+  - image: ghcr.io/mayflower/otto-frontend
+    context: .
+    docker:
+      dockerfile: packages/frontend/Dockerfile
+
 deploy:
   helm:
     releases:
-      - name: backend
+      - name: otto
         namespace: 'otto'
         createNamespace: true
         chartPath: 'helm/otto'
@@ -26,8 +31,14 @@ deploy:
         repo: 'https://charts.bitnami.com/bitnami'
         valuesFiles:
           - "helm/dev-db-config.yaml"
+        version: 12.2.7
 portForward:
   - resourceType: Service
-    resourceName: backend-otto
+    resourceName: otto
     namespace: otto
     port: 8080
+  - resourceType: Service
+    resourceName: otto-frontend
+    namespace: otto
+    port: 80
+    localPort: 3000

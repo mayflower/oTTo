@@ -1,101 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.mayflower</groupId>
-    <artifactId>frontend</artifactId>
-    <version>0.0.1</version>
+  <groupId>de.mayflower</groupId>
+  <artifactId>frontend</artifactId>
+  <version>0.0.1</version>
 
-    <name>frontend</name>
-    <description>Frontend for oTTo</description>
+  <name>frontend</name>
+  <description>Frontend for oTTo</description>
 
-    <properties>
-        <!-- plugin version -->
-        <plugins.openapi-generator.version>6.4.0</plugins.openapi-generator.version>
-    </properties>
+  <properties>
+    <!-- plugin version -->
+    <plugins.openapi-generator.version>6.4.0</plugins.openapi-generator.version>
+    
+    <!-- docker -->
+    <docker.image-name>otto/frontend</docker.image-name>
+  </properties>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- source-generation from openapi -->
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>${plugins.openapi-generator.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <phase>validate</phase>
-                            <configuration>
-                                <inputSpec>${project.basedir}/../api-spec/openapi.yml</inputSpec>
-                                <generatorName>typescript-axios</generatorName>
-                                <configOptions>
-                                    <npmName>rest-client</npmName>
-                                    <supportsES6>true</supportsES6>
-                                    <npmVersion>8.19.3</npmVersion>
-                                    <withInterfaces>true</withInterfaces>
-                                </configOptions>
-                                <output>${project.basedir}/generated-sources/client</output>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>com.github.eirslett</groupId>
-                    <artifactId>frontend-maven-plugin</artifactId>
-                    <!-- Use the latest released version:
-                    https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                    <version>1.12.1</version>
-                    <executions>
-                        <execution>
-                            <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
-                            <id>install node and npm</id>
-                            <goals>
-                                <goal>install-node-and-npm</goal>
-                            </goals>
-                            <!-- optional: default phase is "generate-resources" -->
-                            <phase>generate-resources</phase>
-                        </execution>
-                        <execution>
-                        <id>Build OpenAPI code</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- source-generation from openapi -->
+        <plugin>
+          <groupId>org.openapitools</groupId>
+          <artifactId>openapi-generator-maven-plugin</artifactId>
+          <version>${plugins.openapi-generator.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <phase>validate</phase>
+              <configuration>
+                <inputSpec>${project.basedir}/../api-spec/openapi.yml</inputSpec>
+                <generatorName>typescript-axios</generatorName>
+                <configOptions>
+                  <npmName>rest-client</npmName>
+                  <supportsES6>true</supportsES6>
+                  <npmVersion>8.19.3</npmVersion>
+                  <withInterfaces>true</withInterfaces>
+                </configOptions>
+                <output>${project.basedir}/generated-sources/client</output>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>1.12.1</version>
+          <executions>
+            <execution>
+              <id>install node and npm</id>
+              <goals>
+                <goal>install-node-and-npm</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>Build OpenAPI code</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <workingDirectory>${project.basedir}/generated-sources/client</workingDirectory>
+                <installDirectory>${project.basedir}</installDirectory>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install dependencies</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>build prod server</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <arguments>run build</arguments>
+              </configuration>
+            </execution>
+          </executions>
+          <configuration>
+            <nodeVersion>v18.14.2</nodeVersion>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
-                        <!-- optional: default phase is "generate-resources" -->
-                        <phase>generate-resources</phase>
-
-                        <configuration>
-                            <!-- optional: The default argument is actually
-        "install", so unless you need to run some other npm command,
-        you can remove this whole <configuration> section.
-        -->
-                            <arguments>install</arguments>
-                            <workingDirectory>${project.basedir}/generated-sources/client</workingDirectory>
-                            <installDirectory>${project.basedir}</installDirectory>
-                        </configuration>
-                    </execution>
-                    </executions>
-                    
-                    <configuration>
-                        <nodeVersion>v18.14.2</nodeVersion>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

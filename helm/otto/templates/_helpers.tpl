@@ -49,6 +49,10 @@ Selector labels
 app.kubernetes.io/name: {{ include "otto.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+{{- define "otto.selectorLabelsFrontend" -}}
+app.kubernetes.io/name: {{ include "otto.name" . }}-frontend
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
 
 {{/*
 Create the name of the service account to use
